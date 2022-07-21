@@ -5,9 +5,150 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        section {
+            padding-top: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding-bottom: 0px;
+
+        }
+
+        .card {
+            background: darkslategray;
+            width: 400px;
+            height: 500px;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .contenido {
+            padding-top: 90px;
+            padding-bottom: 20px;
+            font-family: sans-serif;
+            text-align: center;
+            margin: 0;
+        }
+
+        .ub-em{
+            width: 100%;
+            display:inline-flex;
+            justify-content: space-evenly;
+            padding: 15px 0px;
+
+            font-family: sans-serif;
+        }
+
+        .ub{
+            order: 1;
+        }
+
+        .em {
+            order: 2;
+        }
+
+        .nombre{
+            font-family: 'Open Sans', sans-serif;
+            font-family: 'Source Code Pro', monospace;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+
+        .titulo{
+            font-family: 'Open Sans', sans-serif;
+            font-family: 'Source Code Pro', monospace;
+            font-size: 1em;
+        }
+
+        p {
+            color: whitesmoke;
+            margin: 3px;
+
+        }
+
+        div img {
+            width: 100%;
+            height: 35%;
+        }
+        .follow-container {
+            display: flex;
+            align-content: center;
+            width: 100%;
+            height: 12%;
+            background: darkslategrey;
+        }
+
+        .ps {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50%;
+            text-align: center;
+            border: 1px solid darkgray;
+        }
+
+        p .followers {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .follow-button {
+            background: forestgreen;
+            height: 9%;
+            color: aliceblue;
+            text-align: center;
+            line-height: 45px;
+
+        }
+        .profile img {
+            width: 150px;
+            height: 150px;
+            z-index: 5;
+            position: absolute;
+            top: 204px;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital@1&family=Source+Code+Pro&display=swap');    </style>
 </head>
 <body>
-    <h1>Bienvenido a mi pagina Web</h1>
-    <img src="https://media2.giphy.com/media/RtdRhc7TxBxB0YAsK6/giphy.gif />
+    <section>
+        <div class="profile">
+            <img src="https://i.ibb.co/ThB2pxM/image.png" alt="perfil" />
+        </div>
+
+        <div class="card">
+
+            <img src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+
+            <div class="contenido">
+                <p class="nombre">Fabio Escobar</p>
+                <p class="titulo">Fullstack Developer</p>
+            </div>
+
+            <div class="ub-em">
+                <p class="ub">🇨🇴 Colombia</p>
+                <p class="em">📨 Send E-mail</p>
+            </div>
+
+            <div class="follow-container">
+                <div class="ps">
+                    <p>2,500 <br> Followers</p>
+                </div>
+
+                <div class="ps">
+                    <p>1,800 <br>Following</p>
+                </div>
+            </div>
+
+            <div class="follow-button">
+                Follow
+            </div>
+        </div>
+    </section>
 </body>
 </html>
