@@ -10,7 +10,12 @@ public class Flujo {
 
 	private static void metodo1() {
 		System.out.println("Inicio metodo1");
-		metodo2();
+		try {
+			metodo2();			
+		} catch (FabioExcepcion e) {
+//			System.out.println("Como asi perrito?");
+			e.printStackTrace();
+		}
 		System.out.println("Fin metodo1");
 	}
 
