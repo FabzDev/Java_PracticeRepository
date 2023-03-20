@@ -22,7 +22,7 @@ public abstract class Cuenta {
 
     public abstract void deposita(double valor);
 
-    public void saca(double valor) {
+    public void saca(double valor) throws Exception{
     	if(this.saldo < valor) {
     		throw new SaldoInsuficienteException("Saldo insuficiente papu");    		
     	}
@@ -31,7 +31,11 @@ public abstract class Cuenta {
 
     public boolean transfiere(double valor, Cuenta destino) {
         if(this.saldo >= valor) {
-            this.saca(valor);
+            try {
+				this.saca(valor);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
             destino.deposita(valor);
             return true;
         } else {
