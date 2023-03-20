@@ -1,6 +1,6 @@
 package java_pila_ejecucion;
 
-public class FabioExcepcion extends RuntimeException{
+public class FabioExcepcion extends Exception{
 	
 	/**
 	 * 
