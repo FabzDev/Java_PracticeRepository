@@ -1,36 +1,36 @@
 package dominandoCollections;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Clase3 {
 
 	public static void main(String[] args) {
-		String var1 = "Clase1";
-		String var2 = "Clase2";
-		String var3 = "Clase3";
-		String var4 = "Clase4";
+		String curso1 = "Geometría";
+		String curso2 = "Física";
+		String curso3 = "Química";
+		String curso4 = "Historia";
 
-		ArrayList<String> listaString = new ArrayList<String>();
-		listaString.add(var1);
-		listaString.add(var2);
-		listaString.add(var3);
-		listaString.add(var4);
+		ArrayList<String> cursos = new ArrayList<String>();
+		cursos.add(curso1);
+		cursos.add(curso2);
+		cursos.add(curso3);
+		cursos.add(curso4);
 		
-		System.out.println(listaString);
-
-		for(int i=0; i<listaString.size(); i++) {
-			System.out.println(listaString.get(i));
-		}
+//		Collections.sort(cursos); // Ordena alfabeticamente
+//		Collections.sort(cursos, Collections.reverseOrder()); // Ordena alfabeticamente en sentido contrario
 		
-		for (String item : listaString) {
-			System.out.println(item);
-		}
+//		cursos.sort(Comparator.naturalOrder()); // Ordena alfabeticamente
+//		cursos.sort(Comparator.reverseOrder()); // Ordena alfabeticamente en sentido contrario
 		
-		System.out.println();
+//		System.out.println(cursos); 
 		
-		listaString.forEach(item -> {
-			System.out.println(item);
-		});
+		List<String> nuevaLista = cursos.stream().sorted().collect(Collectors.toList()); // Ordena alfabeticamente pero creando un nuevo arreglo, por lo tanto:
+		System.out.println(nuevaLista);
+		
+		
 	}
-
 }
