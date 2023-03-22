@@ -6,8 +6,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-
+import model.*;
+import model.*;
 public class Clase5 {
 	
 	public static void main(String[] args) {
