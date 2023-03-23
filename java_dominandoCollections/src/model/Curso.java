@@ -1,22 +1,23 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Curso{
 	private String nombre;
 	private int tiempo;
-	private List<Clase> claseList = new ArrayList<Clase>();
+	private List<Aula> aulaList = new ArrayList<Aula>();
 	
 	public Curso(String nombre, int tiempo) {
 		this.nombre = nombre;
 		this.tiempo = tiempo;
 	}
 	
-	public Curso(String nombre, int tiempo, List<Clase> claseList) {
+	public Curso(String nombre, int tiempo, List<Aula> aulaList) {
 		this.nombre = nombre;
 		this.tiempo = tiempo;
-		this.claseList = claseList;
+		this.aulaList = aulaList;
 	}
 	
 	public String getNombre() {
@@ -35,16 +36,17 @@ public class Curso{
 		this.tiempo = tiempo;
 	}
 	
-	public List<Clase> getClaseList() {
-		return claseList;
+	public List<Aula> getAulaList() {
+		return Collections.unmodifiableList(aulaList);
+//		return aulaList;
 	}
 
-	public void setClaseList(List<Clase> claseList) {
-		this.claseList = claseList;
+	public void setAulaList(List<Aula> aulaList) {
+		this.aulaList = aulaList;
 	}
 	
-	public void addClase(Clase clase) {
-		this.claseList.add(clase);
+	public void addAula(Aula aula) {
+		this.aulaList.add(aula);
 	}
 
 	

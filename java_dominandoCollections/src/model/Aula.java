@@ -1,10 +1,10 @@
 package model;
 
-public class Clase{
+public class Aula{
 	
 	private String nombre;
 	
-	public Clase(String nombre) {
+	public Aula(String nombre) {
 		this.nombre = nombre;
 	}
 	public String getNombre() {return nombre;}
