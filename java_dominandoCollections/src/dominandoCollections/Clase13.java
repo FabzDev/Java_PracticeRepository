@@ -2,6 +2,7 @@ package dominandoCollections;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashSet;
 public class Clase13 {
 
@@ -29,11 +30,13 @@ public class Clase13 {
 //			System.out.println(alumno);
 //		}
 		
-		listaAlumnos.forEach(alumno -> {
-			System.out.println(alumno);
-		});
+//		listaAlumnos.forEach(alumno -> {
+//			System.out.println(alumno);
+//		});
 		
 		boolean valida = listaAlumnos.contains("Alejandro Escobar");
+		
+		listaAlumnos.stream().max(Comparator.comparingInt(String::length)).get();
 		
 		System.out.println("\n" + valida);
 }
