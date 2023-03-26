@@ -19,7 +19,7 @@ public class Canvas {
 		else if (currentTool == ToolType.BRUSH)
 			System.out.println("Draw a line");
 		else if (currentTool == ToolType.ERASER)
-			System.out.println("Erase something");
+			System.out.println("Erase something ");
 	}
 
 	public ToolType getCurrentTool() {
