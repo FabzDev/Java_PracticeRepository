@@ -5,29 +5,35 @@ import java.util.Scanner;
 
 public class Main {
 	public static void main(String[] args) {
+		final int MONTHS_IN_YEAR = 12;
+		final int PERCENT = 100;
+		
 		Scanner scan = new Scanner(System.in);
 		double principal; // done
 		double anualIntRate; //done 
 		double monthIntRate; //done
 		int periodYears; //done
 		int periodMonths;
-		double mortage;
+		double mortgage;
 		
 		System.out.print("Principal: ");
 		principal = scan.nextDouble();
 		System.out.print("Anual Interest Rate: ");
-		anualIntRate = scan.nextDouble()/100;
+		anualIntRate = scan.nextDouble()/PERCENT;
 		System.out.print("Period (Years): ");
 		periodYears = scan.nextInt();
 		
-		monthIntRate = anualIntRate / 12;
-		periodMonths = periodYears * 12;
+		monthIntRate = anualIntRate / MONTHS_IN_YEAR;
+		periodMonths = periodYears * MONTHS_IN_YEAR;
 		
-		mortage = principal * monthIntRate * Math.pow((1+monthIntRate), periodMonths)/ (Math.pow((1+monthIntRate),periodMonths ) -1);
+		mortgage = principal * monthIntRate * Math.pow((1+monthIntRate), periodMonths)/ (Math.pow((1+monthIntRate),periodMonths ) -1);
 		
-		NumberFormat currency = NumberFormat.getCurrencyInstance();
+//		NumberFormat currency = NumberFormat.getCurrencyInstance();
+//		System.out.println("Mortgage: " + currency.format(mortgage));
+//		System.out.println("Total paid: " + currency.format(mortgage*periodMonths));
 		
-		System.out.println("Mortgage: " + currency.format(mortage));
-		
+		String mortgageFormated = NumberFormat.getCurrencyInstance().format(mortgage);
+		System.out.println("Mortgage: " + mortgageFormated);
+		System.out.println("Total paid: " + NumberFormat.getCurrencyInstance().format(mortgage*periodMonths));
 	}
 }
