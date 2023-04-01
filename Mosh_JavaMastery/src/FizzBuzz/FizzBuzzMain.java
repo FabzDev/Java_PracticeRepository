@@ -2,7 +2,7 @@ package FizzBuzz;
 
 import java.util.Scanner;
 
-public class Main {
+public class FizzBuzzMain {
 	
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
