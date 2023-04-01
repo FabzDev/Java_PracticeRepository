@@ -16,18 +16,27 @@ public class Main {
 		int periodMonths;
 		double mortgage;
 
-		while (true) {
+//		while (true) {
+//			System.out.print("\nPrincipal $1,000 - $1,000,000: ");
+//			principal = scan.nextDouble();
+//			if (principal < 1000 || principal > 1_000_000) {
+//				System.out.println("Enter a number between 1,000 and 1,000,000.");
+//				continue;
+//			} else
+//				break;
+//		}
+		
+		while (true) { // another way to do the same without "continue"
 			System.out.print("\nPrincipal $1,000 - $1,000,000: ");
 			principal = scan.nextDouble();
-			if (principal < 1000 || principal > 1_000_000) {
-				System.out.println("Enter a number between 1,000 and 1,000,000.");
-				continue;
-			} else
+			if (principal >= 1000 && principal <= 1_000_000) {
 				break;
+			}
+			System.out.println("Enter a number between 1,000 and 1,000,000.");
 		}
 
 		while (true) {
-			System.out.print("Anual Interest Rate: ");
+			System.out.print("\nAnual Interest Rate: ");
 			anualIntRate = scan.nextDouble();
 			if (anualIntRate < 0.1 || anualIntRate > 30) {
 				System.out.println("Enter a number between 0.1 and 30.");
@@ -39,7 +48,7 @@ public class Main {
 		}
 
 		while (true) {
-			System.out.print("Period (Years): ");
+			System.out.print("\nPeriod (Years): ");
 			periodYears = scan.nextInt();
 			if (periodYears < 1 || periodYears > 30) {
 				System.out.println("Enter a number between 1 and 30.");
