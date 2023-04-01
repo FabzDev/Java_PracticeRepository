@@ -5,70 +5,48 @@ import java.util.Scanner;
 
 public class Main {
 	public static void main(String[] args) {
-		final int MONTHS_IN_YEAR = 12;
-		final int PERCENT = 100;
-
 		Scanner scan = new Scanner(System.in);
-		double principal; // done
-		double anualIntRate; // done
-		double monthIntRate; // done
-		int periodYears; // done
-		int periodMonths;
+		double principal;
+		double anualIntRate;
+		byte periodYears;
 		double mortgage;
 
-//		while (true) {
-//			System.out.print("\nPrincipal $1,000 - $1,000,000: ");
-//			principal = scan.nextDouble();
-//			if (principal < 1000 || principal > 1_000_000) {
-//				System.out.println("Enter a number between 1,000 and 1,000,000.");
-//				continue;
-//			} else
-//				break;
-//		}
-		
-		while (true) { // another way to do the same without "continue"
-			System.out.print("\nPrincipal $1,000 - $1,000,000: ");
-			principal = scan.nextDouble();
-			if (principal >= 1000 && principal <= 1_000_000) {
-				break;
-			}
-			System.out.println("Enter a number between 1,000 and 1,000,000.");
-		}
+		principal = readNumber("Principal ($1,000 - $1,000,000): ", 1000, 1000000);
+		anualIntRate = readNumber("\nAnual Interest Rate: ", 1, 30);
+		periodYears = (byte) readNumber("\nPeriod (Years): ", 1, 30);
 
-		while (true) {
-			System.out.print("\nAnual Interest Rate: ");
-			anualIntRate = scan.nextDouble();
-			if (anualIntRate < 0.1 || anualIntRate > 30) {
-				System.out.println("Enter a number between 0.1 and 30.");
-				continue;
-			} else {
-				anualIntRate /= PERCENT; 
-				break;
-			}
-		}
-
-		while (true) {
-			System.out.print("\nPeriod (Years): ");
-			periodYears = scan.nextInt();
-			if (periodYears < 1 || periodYears > 30) {
-				System.out.println("Enter a number between 1 and 30.");
-				continue;
-			} else
-				break;
-		}
-
-		monthIntRate = anualIntRate / MONTHS_IN_YEAR;
-		periodMonths = periodYears * MONTHS_IN_YEAR;
-
-		mortgage = principal * monthIntRate * Math.pow((1 + monthIntRate), periodMonths)
-				/ (Math.pow((1 + monthIntRate), periodMonths) - 1);
-
-//		NumberFormat currency = NumberFormat.getCurrencyInstance();
-//		System.out.println("Mortgage: " + currency.format(mortgage));
-//		System.out.println("Total paid: " + currency.format(mortgage*periodMonths));
-
+		mortgage = calculateMortgage(principal, anualIntRate, periodYears);
 		String mortgageFormated = NumberFormat.getCurrencyInstance().format(mortgage);
-		System.out.println("Mortgage: " + mortgageFormated);
-		System.out.println("Total paid: " + NumberFormat.getCurrencyInstance().format(mortgage * periodMonths));
+		System.out.println("\nMortgage: " + mortgageFormated);
+		System.out.println("\nTotal paid: " + NumberFormat.getCurrencyInstance().format(mortgage * periodYears * 12));
 	}
+
+	public static double calculateMortgage(double principal, double anualIntRate, double periodYears) {
+		final int MONTHS_IN_YEAR = 12;
+		final int PERCENTAGE = 100;
+		double mortgage;
+		double monthIntRate;
+		byte periodMonths;
+
+		monthIntRate = anualIntRate / MONTHS_IN_YEAR / PERCENTAGE;
+		periodMonths = (byte) (periodYears * MONTHS_IN_YEAR);
+
+		mortgage = principal * monthIntRate * ((Math.pow((1+monthIntRate), periodMonths))/((Math.pow((1+monthIntRate), periodMonths))-1));
+		return mortgage;
+
+	}
+
+	public static double readNumber(String initialMessage, int min, int max) {
+		Scanner scan2 = new Scanner(System.in);
+		double value;
+		while (true) {
+			System.out.print(initialMessage);
+			value = (double) scan2.nextDouble();
+			if (value >= min && value <= max) {
+				return value;
+			}
+			System.out.println("Enter a number between " + min + " and " + max + "\n");
+		}
+	}
+
 }
