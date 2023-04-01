@@ -16,18 +16,37 @@ public class Main {
 		int periodMonths;
 		double mortgage;
 
-		System.out.print("Principal ($1,000 - $1,000,000: ");
-		principal = scan.nextDouble();
-		while (principal < 1000 || principal > 1_000_000) {
-			System.out.println("Enter a number between 1,000 and 1,000,000.");
-			System.out.print("Principal ($1,000 - $1,000,000: ");
+		while (true) {
+			System.out.print("\nPrincipal $1,000 - $1,000,000: ");
 			principal = scan.nextDouble();
+			if (principal < 1000 || principal > 1_000_000) {
+				System.out.println("Enter a number between 1,000 and 1,000,000.");
+				continue;
+			} else
+				break;
 		}
 
-		System.out.print("Anual Interest Rate: ");
-		anualIntRate = scan.nextDouble() / PERCENT;
-		System.out.print("Period (Years): ");
-		periodYears = scan.nextInt();
+		while (true) {
+			System.out.print("Anual Interest Rate: ");
+			anualIntRate = scan.nextDouble();
+			if (anualIntRate < 0.1 || anualIntRate > 30) {
+				System.out.println("Enter a number between 0.1 and 30.");
+				continue;
+			} else {
+				anualIntRate /= PERCENT; 
+				break;
+			}
+		}
+
+		while (true) {
+			System.out.print("Period (Years): ");
+			periodYears = scan.nextInt();
+			if (periodYears < 1 || periodYears > 30) {
+				System.out.println("Enter a number between 1 and 30.");
+				continue;
+			} else
+				break;
+		}
 
 		monthIntRate = anualIntRate / MONTHS_IN_YEAR;
 		periodMonths = periodYears * MONTHS_IN_YEAR;
