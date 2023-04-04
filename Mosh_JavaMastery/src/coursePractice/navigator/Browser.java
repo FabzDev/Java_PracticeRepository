@@ -7,11 +7,11 @@ public class Browser {
 		System.out.println(html);
 	}
 	
-	public String getIp(String address) {
+	private String getIp(String address) {
 		return "127.0.0.1";
 	}
 	
-	public String sendHttpRequest(String ip) {
+	private String sendHttpRequest(String ip) {
 		return "<html></html>";
 	}
 }

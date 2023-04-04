@@ -4,11 +4,21 @@ public class Employee {
 	private int baseSalary;
 	private int hourlyRate;
 
+	
+	public Employee(int baseSalary) {
+		this(baseSalary, 0);
+	}
+	
+	public Employee(int baseSalary, int hourlyRate) {
+		setBaseSalary(baseSalary);
+		setHourlyRate(hourlyRate);
+	}
+
 	public int calculateWage(int extraHours) {
 		return baseSalary + extraHours * hourlyRate;
 	}
-
-	private int getBaseSalary() {
+	
+	public int calculateWage() {
 		return baseSalary;
 	}
 
@@ -18,15 +28,10 @@ public class Employee {
 		this.baseSalary = baseSalary;
 	}
 
-	private int getHourlyRate() {
-		return hourlyRate;
-	}
-
 	public void setHourlyRate(int hourlyRate) {
-		if (hourlyRate <= 0)
+		if (hourlyRate < 0)
 			throw new IllegalArgumentException("Error: rate not valid");
 		this.hourlyRate = hourlyRate;
-
 	}
-
+	
 }
