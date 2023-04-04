@@ -9,5 +9,6 @@ public class Main {
 		int wage2 = employee2.calculateWage();
 		System.out.println(wage1);
 		System.out.println(wage2);
+		Employee.printNumberOfEmployees();
 	}
 };

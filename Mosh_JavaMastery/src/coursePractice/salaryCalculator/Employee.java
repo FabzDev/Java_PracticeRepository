@@ -3,6 +3,8 @@ package coursePractice.salaryCalculator;
 public class Employee {
 	private int baseSalary;
 	private int hourlyRate;
+	
+	static int numberOfEmployees;
 
 	
 	public Employee(int baseSalary) {
@@ -12,6 +14,7 @@ public class Employee {
 	public Employee(int baseSalary, int hourlyRate) {
 		setBaseSalary(baseSalary);
 		setHourlyRate(hourlyRate);
+		numberOfEmployees++;
 	}
 
 	public int calculateWage(int extraHours) {
@@ -20,6 +23,10 @@ public class Employee {
 	
 	public int calculateWage() {
 		return baseSalary;
+	}
+	
+	public static void printNumberOfEmployees() {
+		System.out.println(numberOfEmployees); 
 	}
 
 	public void setBaseSalary(int baseSalary) {
