@@ -2,20 +2,9 @@ package MortageCalculator_Project;
 
 import java.util.Scanner;
 
-public  class Reader {
-	String initialMessage;
-	int min;
-	int max;
-	
-	
-	
-	public Reader(String initialMessage, int min, int max) {
-		this.initialMessage = initialMessage;
-		this.min = min;
-		this.max = max;
-	}
+public abstract class Reader {
 
-	public double readValue() {
+	public static double readValue(String initialMessage, int min, int max) {
 		Scanner scan = new Scanner(System.in);
 		double value;
 		while (true) {
