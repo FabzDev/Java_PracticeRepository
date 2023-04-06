@@ -2,7 +2,7 @@ package MortageCalculator_Project;
 
 import java.text.NumberFormat;
 
-public class MortageCalculator {
+public class MortageReport {
 	int MONTHS_IN_YEAR = 12;
 	int PERCENTAGE = 100;
 	double principal;
@@ -12,7 +12,7 @@ public class MortageCalculator {
 	byte periodMonths;
 	
 	
-	public MortageCalculator(double principal, double anualIntRate, byte periodYears) {
+	public MortageReport(double principal, double anualIntRate, byte periodYears) {
 		this.principal = principal;
 		this.anualIntRate = anualIntRate;
 		this.periodYears = periodYears;
