@@ -8,15 +8,19 @@ public class MortageCalculator {
 	double principal;
 	double anualIntRate;
 	byte periodYears;
-	double monthIntRate = anualIntRate / MONTHS_IN_YEAR / PERCENTAGE;
-	byte periodMonths = (byte) (periodYears * MONTHS_IN_YEAR);
+	double monthIntRate;
+	byte periodMonths;
+	
 	
 	public MortageCalculator(double principal, double anualIntRate, byte periodYears) {
 		this.principal = principal;
 		this.anualIntRate = anualIntRate;
 		this.periodYears = periodYears;
+		this.monthIntRate = anualIntRate / MONTHS_IN_YEAR / PERCENTAGE;
+		this.periodMonths = (byte) (periodYears * MONTHS_IN_YEAR);
 	}
 
+	
 	public void printMortgage() {
 		double mortgage = calculateMortgage();
 		double totalPaid = mortgage * periodYears * MONTHS_IN_YEAR;
@@ -26,6 +30,7 @@ public class MortageCalculator {
 		System.out.println("-----------");
 		System.out.println("Monthly Payments: " + mortgageFormated);
 		System.out.println("Total paid: " + totalPaidFormated);
+		getPaymentSchedule();
 	}
 	
 	public double calculateMortgage() {
