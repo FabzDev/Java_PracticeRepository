@@ -8,40 +8,37 @@ public class MortageCalculator {
 	private double anualIntRate;
 	private byte periodYears;
 
-	private double monthIntRate;
-	private byte periodMonths;
-
 	public MortageCalculator(double principal, double anualIntRate, byte periodYears) {
 		this.principal = principal;
 		this.anualIntRate = anualIntRate;
 		this.periodYears = periodYears;
-		this.monthIntRate = this.getMonthIntRate();
-		this.periodMonths = this.getPeriodMonths();
 	}
 
+	
 	public double calculateMortgage() {
-		double mortgage = principal * getMonthIntRate() * ((Math.pow((1 + getMonthIntRate()), getPeriodMonths()))
-				/ ((Math.pow((1 + getMonthIntRate()), getPeriodMonths())) - 1));
+		double monthIntRate = monthIntRate();
+		byte periodMonths = periodMonths();
+		double mortgage = principal * monthIntRate * ((Math.pow((1 + monthIntRate), periodMonths))
+				/ ((Math.pow((1 + monthIntRate), periodMonths)) - 1));
 		return mortgage;
 	}
 
 	public double calcMonthlyPayment(short paidMonths) {
+		double monthIntRate = monthIntRate();
+		byte periodMonths = periodMonths();
 		double balance = principal
-				* ((Math.pow((1 + getMonthIntRate()), getPeriodMonths()))
-						- (Math.pow((1 + getMonthIntRate()), paidMonths)))
-				/ ((Math.pow((1 + getMonthIntRate()), getPeriodMonths())) - 1);
-
+				* ((Math.pow((1 + monthIntRate), periodMonths))
+						- (Math.pow((1 + monthIntRate), paidMonths)))
+				/ ((Math.pow((1 + monthIntRate), periodMonths)) - 1);
 		return balance;
 	}
 
-	public double getMonthIntRate() {
-		monthIntRate = anualIntRate / MONTHS_IN_YEAR / PERCENTAGE;
-		return monthIntRate;
+	private double monthIntRate() {
+		return anualIntRate / MONTHS_IN_YEAR / PERCENTAGE;
 	}
 
-	public byte getPeriodMonths() {
-		this.periodMonths = (byte) (periodYears * MONTHS_IN_YEAR);
-		return periodMonths;
+	public byte periodMonths() {
+		return (byte) (periodYears * MONTHS_IN_YEAR);
 	}
 
 }

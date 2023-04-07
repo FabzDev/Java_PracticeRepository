@@ -3,21 +3,16 @@ package MortageCalculator_Project;
 import java.text.NumberFormat;
 
 public class LoanReport {
+	MortageCalculator calculator;
 
-	private double principal;
-	private double anualIntRate;
-	private byte periodYears;
-
-	public LoanReport(double principal, double anualIntRate, byte periodYears) {
-		this.principal = principal;
-		this.anualIntRate = anualIntRate;
-		this.periodYears = periodYears;
+	public LoanReport(MortageCalculator calculator) {
+		this.calculator = calculator;
 	}
+	
 
 	public void printMortgage() {
-		MortageCalculator calculator = new MortageCalculator(principal, anualIntRate, periodYears);
 		double mortgage = calculator.calculateMortgage();
-		double totalPaid = mortgage * calculator.getPeriodMonths();
+		double totalPaid = mortgage * calculator.periodMonths();
 		String mortgageFormated = NumberFormat.getCurrencyInstance().format(mortgage);
 		String totalPaidFormated = NumberFormat.getCurrencyInstance().format(totalPaid);
 		System.out.println("\nMORTGAGE");
@@ -27,9 +22,8 @@ public class LoanReport {
 	}
 
 	public void printPaymentSchedule() {
-		MortageCalculator calculator = new MortageCalculator(principal, anualIntRate, periodYears);
 		short paidMonths = 0;
-		double balance = principal;
+		double balance = 1;
 		System.out.println("\nPAYMENT SCHEDULE");
 		System.out.println("-------------------");
 
