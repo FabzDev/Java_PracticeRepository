@@ -6,8 +6,8 @@ public class MainPoint {
 		var point2 = new Point(1, 2);
 
 		System.out.println(point1 == point2); // false
-		System.out.println(point1.equals(new TextBox())); // false
-		
-			
+		System.out.println(point1.hashCode()); // false
+		System.out.println(point2.hashCode()); // false
+
 	}
 }
