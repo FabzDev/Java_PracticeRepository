@@ -2,7 +2,7 @@ package coursePractice.inheritance;
 
 public class Main {
 	public static void main(String[] args) {
-		var control = new UIControl(true);
+//		var control = new UIControl(true);
 		var textBox = new TextBox();
 		show(textBox);
 	}

@@ -3,8 +3,11 @@ package coursePractice.inheritance;
 public class UIControl {
 	private boolean isEnable=true;
 
-	public UIControl(boolean isEnable) {
-		this.isEnable = isEnable;
+//	public UIControl(boolean isEnable) {
+//		this.isEnable = isEnable;
+//	}
+	
+	public void render() {
 	}
 	
 	public void enable() {
