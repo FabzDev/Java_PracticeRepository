@@ -1,34 +1,14 @@
 package com.mytube;
 
-public class VideoProcessor implements VideoEncoder, VideoDatabase, EmailService {
+public class VideoProcessor{
 
-	@Override
-	public void encode(Video video) {
-		System.out.println("Encoding video...");
-		System.out.println("Done!\n");
-	}
+	public void process(Video video, Methods methods) {
 
-	@Override
-	public void store(Video video) {
-		System.out.println("Storing video metadata in a SQL database...");
-		System.out.println("Title: " + video.getTitle());
-		System.out.println("File Name: " + video.getFileName());
-		System.out.println("Done!\n");
-	}
+		methods.encode(video);
 
-	@Override
-	public void sendEmail(User user) {
-		System.out.println("Notifying " + user.getEmail() + "...");
-		System.out.println("Done!\n");
-	}
+		methods.store(video);
 
-	public void process(Video video) {
-
-		encode(video);
-
-		store(video);
-
-		sendEmail(video.getUser());
+		methods.sendEmail(video.getUser());
 	}
 
 }
