@@ -8,8 +8,13 @@ public class Main {
         video.setTitle("Jennifer's birthday");
         video.setUser(new User("john@domain.com"));
 
-        var methods = new Methods();
-        var processor = new VideoProcessor();
-        processor.process(video, methods);
+       
+        var processor = new VideoProcessor(
+        		new RSXVideoEncoder(),
+        		new SQLVideoDatabase(),
+        		new GmailNotificationService()
+        		);
+        
+        processor.process(video);
     }
 }
