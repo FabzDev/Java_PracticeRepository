@@ -1,14 +1,14 @@
 package coursePractice.generics;
 
 public class UserList {
-	private User[] users = new User[10];
+	private Object[] users = new Object[10];
 	private int count;
 	
-	public void add(User user) {
+	public void add(Object user) {
 		users[count++] = user;
 	}
 	
-	public User get(int index) {
+	public Object get(int index) {
 		return users[index];
 	}
 }

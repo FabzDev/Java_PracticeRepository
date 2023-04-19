@@ -2,10 +2,8 @@ package coursePractice.generics;
 
 public class Main {
 	public static void main(String[] args) {
-		List lista = new List();
-		lista.add(5);
-		lista.add(4);
-		lista.add(3);
-		lista.getNum(2);
+		GenericList<Integer> users = new GenericList<>();
+		users.add(1);
+		users.get(0);
 	}
 }
