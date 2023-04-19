@@ -1,14 +1,14 @@
 package coursePractice.generics;
 
 public class List {
-	int[] numbers = new int[10];
-	int count;
+	private int[] numbers = new int[10];
+	private int count;
 	
 	public void add(int num) {
 		numbers[count++] = num;
 	}
 	
-	public void getNum(int index) {
-		System.out.println(numbers[index]);
+	public int getNum(int index) {
+		return numbers[index];
 	}
 }
