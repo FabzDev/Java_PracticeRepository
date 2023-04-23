@@ -1,6 +1,6 @@
 package coursePractice.generics;
 
-public class Util {
+public class Utils {
 	public static <T extends Comparable<T>> T max(T first, T second) {
 		return (first.compareTo(second) < 0) ? second : first;
 	}
@@ -17,7 +17,8 @@ public class Util {
 //		User x = users.get(0);
 //	}
 
-	public static void printUsers(GenericList<? super User> users) {
-		users.add(new Instructor(10));
+	public static void printUsers(GenericList<? extends User> users) {
+		users.get(0);
+//		users.add(new Instructor(10));
 	}
 }

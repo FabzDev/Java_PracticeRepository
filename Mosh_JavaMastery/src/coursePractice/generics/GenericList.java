@@ -1,6 +1,6 @@
 package coursePractice.generics;
 
-public class GenericList <T extends Number & Comparable> {
+public class GenericList <T> {
 	private T[] items = (T[]) new Object[10];
 	private int count;
 	
