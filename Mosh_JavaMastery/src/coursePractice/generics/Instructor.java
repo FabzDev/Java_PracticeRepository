@@ -1,21 +1,16 @@
 package coursePractice.generics;
 
-public class User extends Number implements Comparable<User> {
-	  private int points;
+public class Instructor extends User {
 
-	  public User(int points) {
-	    this.points = points;
-	  }
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
-	  @Override
-	  public int compareTo(User other) {
-	    return points - other.points;
-	  }
-
-	  @Override
-	  public String toString() {
-	    return "Points=" + points;
-	  }
+	public Instructor(int points) {
+		super(points);
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public int intValue() {
@@ -41,4 +36,4 @@ public class User extends Number implements Comparable<User> {
 		return 0;
 	}
 
-	}
+}
