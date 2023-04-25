@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.alura.jdbc.pruebas.ConectionFactory;
+
 public class ProductoController {
 
 	public void modificar(String nombre, String descripcion, Integer id) {
@@ -22,7 +24,7 @@ public class ProductoController {
 
 	public List<Map <String, String>> listar() throws SQLException {
 		//1. crear conexion
-		Connection con = DriverManager.getConnection(
+		Connection con = new ConectionFactory().methodConectionFactory(
 				"jdbc:mysql://localhost/control_de_stock?useTimeZone=true&serverTimeZone=UTC",
 				"root",
 				"faeavf44");
