@@ -21,24 +21,28 @@ public class ProductoController {
 	}
 
 	public List<Map <String, String>> listar() throws SQLException {
+		//1. crear conexion
 		Connection con = DriverManager.getConnection(
 				"jdbc:mysql://localhost/control_de_stock?useTimeZone=true&serverTimeZone=UTC",
 				"root",
 				"faeavf44");
-
+		//2. crear objeto statement
 		Statement statement = con.createStatement();
 		
+		//3. Ejecutar execute
 		statement.execute("SELECT ID, NOMBRE, DESCRIPCION, CANTIDAD FROM PRODUCTO");
 		
+		//4. obtener el resultado de statement.execute
 		ResultSet resultSet = statement.getResultSet();
 		
-		List<Map <String, String>> result = new ArrayList<>(); 
+		//5. iterar el resultado y guardarlo en un nuevo array
+		List<Map <String, String>> result = new ArrayList<>(); //creando array vacio
 
-		while(resultSet.next()) {
+		while(resultSet.next()) { //iterando el resultado y agregandolo al array vacio previamente creado
 			Map<String, String> fila = new HashMap<>();
 			fila.put("ID", String.valueOf(resultSet.getInt("ID")));
 			fila.put("NOMBRE", resultSet.getString("NOMBRE"));
-			fila.put("DESCRIPCION", resultSet.getString("DESRIPCION"));
+			fila.put("DESCRIPCION", resultSet.getString("DESCRIPCION"));
 			fila.put("CANTIDAD", String.valueOf(resultSet.getInt("CANTIDAD")));
 			
 			result.add(fila);
