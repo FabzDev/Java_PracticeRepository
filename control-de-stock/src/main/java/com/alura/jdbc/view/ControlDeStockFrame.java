@@ -5,8 +5,7 @@ import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.Map;
+import java.util.HashMap;
 import java.util.Optional;
 
 import javax.swing.JButton;
@@ -248,10 +247,18 @@ public class ControlDeStockFrame extends JFrame {
 		}
 
 		// TODO
-		var producto = new Object[] { textoNombre.getText(), textoDescripcion.getText(), cantidadInt };
+		var producto = new HashMap<String, String>();
+		producto.put("NOMBRE", textoNombre.getText());
+		producto.put("DESCRIPCION", textoDescripcion.getText());
+		producto.put("CANTIDAD", String.valueOf(cantidadInt));
+		
 		var categoria = comboCategoria.getSelectedItem();
 
-		this.productoController.guardar(producto);
+		try {
+			this.productoController.guardar(producto);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
 		JOptionPane.showMessageDialog(this, "Registrado con éxito!");
 
