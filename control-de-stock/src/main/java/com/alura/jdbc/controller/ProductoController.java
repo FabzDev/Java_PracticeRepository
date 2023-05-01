@@ -77,41 +77,38 @@ public class ProductoController {
 		Integer cantidad = Integer.valueOf(producto.get("CANTIDAD")); // 80
 		Integer maxCant = 50;
 
-		Connection con = new ConnectionFactory().recuperaConexion();
-		con.setAutoCommit(false);
+		try (Connection con = new ConnectionFactory().recuperaConexion()) {
+			con.setAutoCommit(false);
 
-		PreparedStatement statement = con.prepareStatement(
-				"INSERT INTO PRODUCTO(nombre, descripcion, cantidad) VALUES(?,?,?)", Statement.RETURN_GENERATED_KEYS);
-
-		try {
-			do {
-				Integer cantFinal = Math.min(cantidad, maxCant);
-				ejecutarRegistroEnGuardar(nombre, descripcion, cantFinal, statement);
-				cantidad = cantidad - cantFinal;
-			} while (cantidad > 0);
-			con.commit();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			con.rollback();
+			try (PreparedStatement statement = con.prepareStatement(
+					"INSERT INTO PRODUCTO(nombre, descripcion, cantidad) VALUES(?,?,?)",
+					Statement.RETURN_GENERATED_KEYS)) {
+				do {
+					Integer cantFinal = Math.min(cantidad, maxCant);
+					ejecutarRegistroEnGuardar(nombre, descripcion, cantFinal, statement);
+					cantidad = cantidad - cantFinal;
+				} while (cantidad > 0);
+				con.commit();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				con.rollback();
+			}
 		}
-
-		statement.close();
-		con.close();
 	}
 
 	private void ejecutarRegistroEnGuardar(String nombre, String descripcion, Integer cantidad,
 			PreparedStatement statement) throws SQLException {
-		
+
 		statement.setString(1, nombre);
 		statement.setString(2, descripcion);
 		statement.setInt(3, cantidad);
 
 		statement.execute();
 
-		ResultSet resultSet = statement.getGeneratedKeys();
-
-		while (resultSet.next()) {
-			System.out.println("Fue insertado el producto " + resultSet.getInt(1));
+		try (ResultSet resultSet = statement.getGeneratedKeys()) {
+			while (resultSet.next()) {
+				System.out.println("Fue insertado el producto " + resultSet.getInt(1));
+			}
 		}
 	}
 
