@@ -10,19 +10,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.management.RuntimeErrorException;
+
 import com.alura.jdbc.clases.ConnectionFactory;
 
 public class ProductoController {
 
 	public void modificar(String nombre, String descripcion, Integer cantidad, Integer id) throws SQLException {
 		Connection con = new ConnectionFactory().recuperaConexion();
-		PreparedStatement statement = con.prepareStatement("UPDATE PRODUCTO SET NOMBRE=? , DESCRIPCION= ?, CANTIDAD = ? WHERE ID = ?;");
-		
+		PreparedStatement statement = con
+				.prepareStatement("UPDATE PRODUCTO SET NOMBRE=? , DESCRIPCION= ?, CANTIDAD = ? WHERE ID = ?;");
+
 		statement.setString(1, nombre);
 		statement.setString(2, descripcion);
 		statement.setInt(3, cantidad);
 		statement.setInt(4, id);
-	
+
 		statement.execute();
 		System.out.println("ID " + id + " fue actualizado");
 		con.close();
@@ -31,7 +34,7 @@ public class ProductoController {
 	public int eliminar(Integer id) throws SQLException {
 		Connection con = new ConnectionFactory().recuperaConexion();
 		PreparedStatement statement = con.prepareStatement("DELETE FROM PRODUCTO WHERE ID =?");
-		
+
 		statement.setInt(1, Integer.valueOf(id));
 
 		statement.execute();
@@ -69,16 +72,42 @@ public class ProductoController {
 	}
 
 	public void guardar(Map<String, String> producto) throws SQLException {
+		String nombre = producto.get("NOMBRE");
+		String descripcion = producto.get("DESCRIPCION");
+		Integer cantidad = Integer.valueOf(producto.get("CANTIDAD")); // 80
+		Integer maxCant = 50;
+
 		Connection con = new ConnectionFactory().recuperaConexion();
+		con.setAutoCommit(false);
+
 		PreparedStatement statement = con.prepareStatement(
 				"INSERT INTO PRODUCTO(nombre, descripcion, cantidad) VALUES(?,?,?)", Statement.RETURN_GENERATED_KEYS);
+
+		try {
+			do {
+				Integer cantFinal = Math.min(cantidad, maxCant);
+				ejecutarRegistroEnGuardar(nombre, descripcion, cantFinal, statement);
+				cantidad = cantidad - cantFinal;
+			} while (cantidad > 0);
+			con.commit();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			con.rollback();
+		}
+
+		statement.close();
+		con.close();
+	}
+
+	private void ejecutarRegistroEnGuardar(String nombre, String descripcion, Integer cantidad,
+			PreparedStatement statement) throws SQLException {
 		
-		statement.setString(1, producto.get("NOMBRE"));
-		statement.setString(2, producto.get("DESCRIPCION"));
-		statement.setInt(3, Integer.valueOf(producto.get("CANTIDAD")));
-		
+		statement.setString(1, nombre);
+		statement.setString(2, descripcion);
+		statement.setInt(3, cantidad);
+
 		statement.execute();
-		
+
 		ResultSet resultSet = statement.getGeneratedKeys();
 
 		while (resultSet.next()) {
