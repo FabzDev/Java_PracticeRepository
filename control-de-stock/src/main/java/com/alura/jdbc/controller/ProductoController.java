@@ -20,8 +20,8 @@ public class ProductoController {
 		
 		statement.setString(1, nombre);
 		statement.setString(2, descripcion);
-		statement.setInt(3, Integer.valueOf(cantidad));
-		statement.setInt(4, Integer.valueOf(id));
+		statement.setInt(3, cantidad);
+		statement.setInt(4, id);
 	
 		statement.execute();
 		System.out.println("ID " + id + " fue actualizado");
