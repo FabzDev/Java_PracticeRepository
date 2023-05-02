@@ -5,9 +5,7 @@ import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.Optional;
-import java.util.StringTokenizer;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -20,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
 
 import com.alura.jdbc.controller.CategoriaController;
 import com.alura.jdbc.controller.ProductoController;
+import com.alura.jdbc.modelo.Producto;
 
 public class ControlDeStockFrame extends JFrame {
 
@@ -189,9 +188,10 @@ public class ControlDeStockFrame extends JFrame {
 					String nombre = (String) modelo.getValueAt(tabla.getSelectedRow(), 1);
 					String descripcion = (String) modelo.getValueAt(tabla.getSelectedRow(), 2);
 					Integer cantidad = Integer.valueOf(modelo.getValueAt(tabla.getSelectedRow(), 3).toString());
-
+					var producto = new Producto(nombre, descripcion, cantidad);
+					producto.setId(id);
 					try {
-						this.productoController.modificar(nombre, descripcion, cantidad, id);
+						this.productoController.modificar(producto);
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -256,21 +256,17 @@ public class ControlDeStockFrame extends JFrame {
 					.format("El campo cantidad debe ser numérico dentro del rango %d y %d.", 0, Integer.MAX_VALUE));
 			return;
 		}
-
-		// TODO
-		var producto = new HashMap<String, String>();
-		producto.put("NOMBRE", textoNombre.getText());
-		producto.put("DESCRIPCION", textoDescripcion.getText());
-		producto.put("CANTIDAD", String.valueOf(cantidadInt));
+		
+		var producto = new Producto(textoNombre.getText(), textoDescripcion.getText(), cantidadInt);
 		
 		var categoria = comboCategoria.getSelectedItem();
-
+		
 		try {
 			this.productoController.guardar(producto);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		
 		JOptionPane.showMessageDialog(this, "Registrado con éxito!");
 
 		this.limpiarFormulario();
