@@ -15,6 +15,12 @@ import com.alura.jdbc.modelo.ProductoDAO;
 
 public class ProductoController {
 
+	private ProductoDAO productoDAO;
+	
+	public ProductoController() {
+		productoDAO = new ProductoDAO(new ConnectionFactory().recuperaConexion());		
+	}
+	
 	public void modificar(Producto producto) throws SQLException {
 		final Connection con = new ConnectionFactory().recuperaConexion();
 		try (con) {
@@ -47,7 +53,7 @@ public class ProductoController {
 	}
 
 	public List<Map<String, String>> listar() throws SQLException {
-		ProductoDAO productoDAO = new ProductoDAO(new ConnectionFactory().recuperaConexion());
+		
 		final Connection con = productoDAO.getCon();
 		try (con) {
 			final PreparedStatement statement = con
