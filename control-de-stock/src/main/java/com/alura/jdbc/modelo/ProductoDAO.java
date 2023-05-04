@@ -56,4 +56,9 @@ public class ProductoDAO {
 			}
 		}
 	}
+	
+
+	public Connection getCon() {
+		return con;
+	}
 }
