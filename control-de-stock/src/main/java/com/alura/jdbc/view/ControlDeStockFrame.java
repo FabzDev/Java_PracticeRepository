@@ -190,12 +190,9 @@ public class ControlDeStockFrame extends JFrame {
 					Integer cantidad = Integer.valueOf(modelo.getValueAt(tabla.getSelectedRow(), 3).toString());
 					var producto = new Producto(nombre, descripcion, cantidad);
 					producto.setId(id);
-					try {
+					
 						this.productoController.modificar(producto);
-					} catch (SQLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+					
 				}, () -> JOptionPane.showMessageDialog(this, "Por favor, elije un item"));
 	}
 
@@ -209,12 +206,9 @@ public class ControlDeStockFrame extends JFrame {
 				.ifPresentOrElse(fila -> {
 					Integer id = Integer.valueOf((modelo.getValueAt(tabla.getSelectedRow(), 0)).toString());
 					int cantidadEliminada = 0;
-					try {
+					
 						cantidadEliminada = this.productoController.eliminar(id);
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-
+				
 					modelo.removeRow(tabla.getSelectedRow());
 
 					JOptionPane.showMessageDialog(this, cantidadEliminada + " item eliminado con éxito!");
@@ -223,23 +217,17 @@ public class ControlDeStockFrame extends JFrame {
 
 	private void cargarTabla() {
 
-		try {
+		 
 			var productos = this.productoController.listar();
 
-			try {
 				productos.forEach(producto -> modelo.addRow(
-						new Object[] { producto.get("ID"), producto.get("NOMBRE"), producto.get("DESCRIPCION"), producto.get("CANTIDAD") }));
-			} catch (Exception e) {
-				throw e;
-			}
+						new Object[] { producto.getId(),
+										producto.getNombre(),
+										producto.getDescripcion(),
+										producto.getCantidad() }));
+			} 
 
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			throw new RuntimeException(e);
-//			e.printStackTrace();
-		}
-
-	}
+	
 
 	private void guardar() {
 		if (textoNombre.getText().isBlank() || textoDescripcion.getText().isBlank()) {

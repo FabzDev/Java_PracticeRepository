@@ -14,19 +14,20 @@ import com.alura.jdbc.clases.ConnectionFactory;
 
 public class ProductoDAO {
 	final private Connection con;
+
 	
+
 	public ProductoDAO(Connection con) {
 		this.con = con;
 	}
 
-
-	public void guardarProducto(Producto producto){
-		Integer cantidad = producto.getCantidad(); 
+	public void guardarProducto(Producto producto) {
+		Integer cantidad = producto.getCantidad();
 		Integer maxCant = 50;
 
 		try (con) {
 			con.setAutoCommit(false);
-			
+
 			PreparedStatement statement = con.prepareStatement(
 					"INSERT INTO PRODUCTO(nombre, descripcion, cantidad) VALUES(?,?,?)",
 					Statement.RETURN_GENERATED_KEYS);
@@ -45,9 +46,9 @@ public class ProductoDAO {
 			throw new RuntimeException(e);
 		}
 	}
-	
-	private void ejecutarRegistroEnGuardar(Producto producto,int cantF,
-			PreparedStatement statement) throws SQLException {
+
+	private void ejecutarRegistroEnGuardar(Producto producto, int cantF, PreparedStatement statement)
+			throws SQLException {
 
 		statement.setString(1, producto.getNombre());
 		statement.setString(2, producto.getDescripcion());
@@ -62,15 +63,9 @@ public class ProductoDAO {
 			}
 		}
 	}
-	
-
-	public Connection getCon() {
-		return con;
-	}
-
 
 	public List<Producto> listar() {
-		final Connection con = this.getCon();
+		Connection con = new ConnectionFactory().recuperaConexion();
 		try (con) {
 			final PreparedStatement statement = con
 					.prepareStatement("SELECT ID, NOMBRE, DESCRIPCION, CANTIDAD FROM PRODUCTO");
@@ -81,17 +76,55 @@ public class ProductoDAO {
 				try (resultSet) {
 					List<Producto> productos = new ArrayList<>();
 					while (resultSet.next()) {
-						Producto result = new Producto(resultSet.getInt("ID"), 
-								resultSet.getString("NOMBRE"),
-								resultSet.getString("DESCRIPCION"),
-								resultSet.getInt("CANTIDAD"));
+						Producto result = new Producto(resultSet.getInt("ID"), resultSet.getString("NOMBRE"),
+								resultSet.getString("DESCRIPCION"), resultSet.getInt("CANTIDAD"));
 						productos.add(result);
 					}
 
 					return productos;
 				}
 			}
-		}catch (SQLException e) {
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public Connection getCon() {
+		return con;
+	}
+
+	public void modificar(Producto producto) {
+		final Connection con = new ConnectionFactory().recuperaConexion();
+		try (con) {
+			final PreparedStatement statement = con
+					.prepareStatement("UPDATE PRODUCTO SET NOMBRE=? , DESCRIPCION= ?, CANTIDAD = ? WHERE ID = ?;");
+			try (statement) {
+				statement.setString(1, producto.getNombre());
+				statement.setString(2, producto.getDescripcion());
+				statement.setInt(3, producto.getCantidad());
+				statement.setInt(4, producto.getId());
+
+				statement.execute();
+				System.out.println("ID " + producto.getId() + " fue actualizado");
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		
+	}
+
+	public int eliminar(Integer id) {
+		final Connection con = new ConnectionFactory().recuperaConexion();
+		try (con) {
+			final PreparedStatement statement = con.prepareStatement("DELETE FROM PRODUCTO WHERE ID =?");
+			try (statement) {
+				statement.setInt(1, id);
+
+				statement.execute();
+
+				return statement.getUpdateCount();
+			}
+		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
 	}
