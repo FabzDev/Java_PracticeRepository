@@ -8,6 +8,10 @@ public class Producto {
 	private String descripcion;
 	
 	private int cantidad;
+	
+	private int categoriaId;
+
+	
 
 	public Producto(String nombre, String descripcion, int cantidad) {
 		this.nombre = nombre;
@@ -20,6 +24,13 @@ public class Producto {
 		this.descripcion = descripcion;
 		this.cantidad = cantidad;
 		this.id = id;
+	}
+	
+	public Producto(String nombre, String descripcion, int cantidad, int categoriaId) {
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.cantidad = cantidad;
+		this.categoriaId = categoriaId;
 	}
 
 	public String getNombre() {
@@ -46,8 +57,14 @@ public class Producto {
 		return String.format("id= %s , nombre= %s, descripcion= %s, cantidad= %d", 
 				id, nombre, descripcion, cantidad);
 	}
+
+	public int getCategoriaId() {
+		return this.categoriaId;
+	}
 	
-	
+	public void setCategoriaId(int categoriaId) {
+		this.categoriaId = categoriaId;
+	}
 	
 	
 }

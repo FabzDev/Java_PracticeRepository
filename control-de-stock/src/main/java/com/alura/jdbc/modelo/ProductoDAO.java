@@ -11,6 +11,12 @@ import java.util.List;
 import com.alura.jdbc.clases.ConnectionFactory;
 
 public class ProductoDAO {
+	
+	private Connection con;
+
+	public ProductoDAO(Connection con) {
+		this.con = con;
+	}
 
 	public void guardarProducto(Producto producto) {
 		Integer cantidad = producto.getCantidad();
@@ -20,7 +26,7 @@ public class ProductoDAO {
 			con.setAutoCommit(false);
 
 			PreparedStatement statement = con.prepareStatement(
-					"INSERT INTO PRODUCTO(nombre, descripcion, cantidad) VALUES(?,?,?)",
+					"INSERT INTO PRODUCTO(nombre, descripcion, cantidad, categoria_id) VALUES(?,?,?,?)",
 					Statement.RETURN_GENERATED_KEYS);
 			try (statement) {
 				do {
@@ -44,13 +50,13 @@ public class ProductoDAO {
 		statement.setString(1, producto.getNombre());
 		statement.setString(2, producto.getDescripcion());
 		statement.setInt(3, cantF);
+		statement.setInt(4, producto.getCategoriaId());
 
 		statement.execute();
 
 		try (ResultSet resultSet = statement.getGeneratedKeys()) {
 			while (resultSet.next()) {
 				producto.setId(resultSet.getInt(1));
-				System.out.println(producto);
 			}
 		}
 	}
