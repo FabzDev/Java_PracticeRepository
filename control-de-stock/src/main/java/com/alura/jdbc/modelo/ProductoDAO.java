@@ -11,11 +11,6 @@ import java.util.List;
 import com.alura.jdbc.clases.ConnectionFactory;
 
 public class ProductoDAO {
-	final private Connection con;
-
-	public ProductoDAO(Connection con) {
-		this.con = con;
-	}
 
 	public void guardarProducto(Producto producto) {
 		Integer cantidad = producto.getCantidad();
@@ -83,10 +78,6 @@ public class ProductoDAO {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
-	}
-
-	public Connection getCon() {
-		return con;
 	}
 
 	public void modificar(Producto producto) {

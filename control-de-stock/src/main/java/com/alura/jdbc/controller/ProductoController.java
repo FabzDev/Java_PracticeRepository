@@ -11,7 +11,7 @@ public class ProductoController {
 	private ProductoDAO productoDAO;
 	
 	public ProductoController() {
-		productoDAO = new ProductoDAO(new ConnectionFactory().recuperaConexion());		
+		productoDAO = new ProductoDAO();		
 	}
 	
 	public void modificar(Producto producto) {
