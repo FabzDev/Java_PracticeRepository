@@ -28,7 +28,6 @@ public class ProductoController {
 			}
 
 	public void guardar(Producto producto) {
-		var productoDAO = new ProductoDAO(new ConnectionFactory().recuperaConexion());
 		productoDAO.guardarProducto(producto);
 	}	
 

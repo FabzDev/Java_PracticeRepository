@@ -6,16 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import com.alura.jdbc.clases.ConnectionFactory;
 
 public class ProductoDAO {
 	final private Connection con;
-
-	
 
 	public ProductoDAO(Connection con) {
 		this.con = con;
@@ -24,7 +20,7 @@ public class ProductoDAO {
 	public void guardarProducto(Producto producto) {
 		Integer cantidad = producto.getCantidad();
 		Integer maxCant = 50;
-
+		Connection con = new ConnectionFactory().recuperaConexion();
 		try (con) {
 			con.setAutoCommit(false);
 
@@ -88,13 +84,13 @@ public class ProductoDAO {
 			throw new RuntimeException(e);
 		}
 	}
-	
+
 	public Connection getCon() {
 		return con;
 	}
 
 	public void modificar(Producto producto) {
-		final Connection con = new ConnectionFactory().recuperaConexion();
+		Connection con = new ConnectionFactory().recuperaConexion();
 		try (con) {
 			final PreparedStatement statement = con
 					.prepareStatement("UPDATE PRODUCTO SET NOMBRE=? , DESCRIPCION= ?, CANTIDAD = ? WHERE ID = ?;");
@@ -110,11 +106,11 @@ public class ProductoDAO {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
-		
+
 	}
 
 	public int eliminar(Integer id) {
-		final Connection con = new ConnectionFactory().recuperaConexion();
+		Connection con = new ConnectionFactory().recuperaConexion();
 		try (con) {
 			final PreparedStatement statement = con.prepareStatement("DELETE FROM PRODUCTO WHERE ID =?");
 			try (statement) {
