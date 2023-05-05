@@ -22,7 +22,7 @@ public class ProductoController {
 	}
 	
 	public void modificar(Producto producto) throws SQLException {
-		final Connection con = new ConnectionFactory().recuperaConexion();
+		Connection con = productoDAO.getCon();
 		try (con) {
 			final PreparedStatement statement = con
 					.prepareStatement("UPDATE PRODUCTO SET NOMBRE=? , DESCRIPCION= ?, CANTIDAD = ? WHERE ID = ?;");
@@ -52,36 +52,12 @@ public class ProductoController {
 		}
 	}
 
-	public List<Map<String, String>> listar() throws SQLException {
-		
-		final Connection con = productoDAO.getCon();
-		try (con) {
-			final PreparedStatement statement = con
-					.prepareStatement("SELECT ID, NOMBRE, DESCRIPCION, CANTIDAD FROM PRODUCTO");
-			try (statement) {
-				statement.execute();
-				final ResultSet resultSet = statement.getResultSet();
-				try (resultSet) {
-					List<Map<String, String>> result = new ArrayList<>();
-					while (resultSet.next()) {
-						Map<String, String> fila = new HashMap<>();
-						fila.put("ID", String.valueOf(resultSet.getInt("ID")));
-						fila.put("NOMBRE", resultSet.getString("NOMBRE"));
-						fila.put("DESCRIPCION", resultSet.getString("DESCRIPCION"));
-						fila.put("CANTIDAD", String.valueOf(resultSet.getInt("CANTIDAD")));
-
-						result.add(fila);
-					}
-
-					return result;
-				}
+	public List<Producto> listar() {
+		return productoDAO.listar();
 			}
-		}
-	}
 
-	public void guardar(Producto producto) throws SQLException {
+	public void guardar(Producto producto) {
 		var productoDAO = new ProductoDAO(new ConnectionFactory().recuperaConexion());
-		
 		productoDAO.guardarProducto(producto);
 	}	
 
