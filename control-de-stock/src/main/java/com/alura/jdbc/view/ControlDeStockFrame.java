@@ -246,12 +246,10 @@ public class ControlDeStockFrame extends JFrame {
 			return;
 		}
 		
-		var categoria = comboCategoria.getSelectedItem(); // AQUI TE PILLASTE EL METODO DE LA CATEGORIA
+		var categoria = comboCategoria.getSelectedIndex(); 
 		
 		var producto = new Producto(textoNombre.getText(), textoDescripcion.getText(),
-				cantidadInt, Integer.valueOf(categoria.toString())); // AGREGASTE CATEGORIA
-		
-		//POR AQUI QUEDASTE FABIO
+				cantidadInt, categoria); 
 		
 		
 		
