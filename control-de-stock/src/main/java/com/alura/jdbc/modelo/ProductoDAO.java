@@ -65,7 +65,7 @@ public class ProductoDAO {
 		Connection con = new ConnectionFactory().recuperaConexion();
 		try (con) {
 			final PreparedStatement statement = con
-					.prepareStatement("SELECT ID, NOMBRE, DESCRIPCION, CANTIDAD FROM PRODUCTO");
+					.prepareStatement("SELECT ID, NOMBRE, DESCRIPCION, CANTIDAD, CATEGORIA_ID FROM PRODUCTO");
 			try (statement) {
 				statement.execute();
 				final ResultSet resultSet = statement.getResultSet();
@@ -74,7 +74,7 @@ public class ProductoDAO {
 					List<Producto> productos = new ArrayList<>();
 					while (resultSet.next()) {
 						Producto result = new Producto(resultSet.getInt("ID"), resultSet.getString("NOMBRE"),
-								resultSet.getString("DESCRIPCION"), resultSet.getInt("CANTIDAD"));
+								resultSet.getString("DESCRIPCION"), resultSet.getInt("CANTIDAD"), resultSet.getInt("CATEGORIA_ID"));
 						productos.add(result);
 					}
 

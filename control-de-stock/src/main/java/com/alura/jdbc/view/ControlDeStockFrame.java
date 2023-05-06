@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 import java.util.Optional;
 
 import javax.swing.JButton;
@@ -57,7 +56,8 @@ public class ControlDeStockFrame extends JFrame {
 		modelo.addColumn("Identificador del Producto");
 		modelo.addColumn("Nombre del Producto");
 		modelo.addColumn("Descripción del Producto");
-		modelo.addColumn("Cantidad");
+		modelo.addColumn("Cantidaaaaaaaaaaaaaaad");
+		modelo.addColumn("Categoria ID");
 
 		cargarTabla();
 
@@ -225,7 +225,8 @@ public class ControlDeStockFrame extends JFrame {
 						new Object[] { producto.getId(),
 										producto.getNombre(),
 										producto.getDescripcion(),
-										producto.getCantidad() }));
+										producto.getCantidad(),
+										producto.getCategoriaId()}));
 			} 
 
 	
@@ -246,12 +247,11 @@ public class ControlDeStockFrame extends JFrame {
 			return;
 		}
 		
-		var categoria = comboCategoria.getSelectedIndex(); 
+		var categoria = (Categoria) comboCategoria.getSelectedItem(); 
 		
 		var producto = new Producto(textoNombre.getText(), textoDescripcion.getText(),
-				cantidadInt, categoria); 
-		
-		
+				cantidadInt, categoria.getId()); 
+	
 		
 			this.productoController.guardar(producto);
 		

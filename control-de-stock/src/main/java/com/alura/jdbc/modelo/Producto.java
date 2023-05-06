@@ -26,6 +26,14 @@ public class Producto {
 		this.id = id;
 	}
 	
+	public Producto(int id, String nombre, String descripcion, int cantidad, int categoriaId) {
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.cantidad = cantidad;
+		this.id = id;
+		this.categoriaId = categoriaId;
+	}
+	
 	public Producto(String nombre, String descripcion, int cantidad, int categoriaId) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;

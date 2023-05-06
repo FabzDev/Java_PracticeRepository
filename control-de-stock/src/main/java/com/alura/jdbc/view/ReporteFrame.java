@@ -7,6 +7,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import com.alura.jdbc.controller.CategoriaController;
+import com.alura.jdbc.controller.ReporteController;
 
 public class ReporteFrame extends JFrame {
 
@@ -15,12 +16,12 @@ public class ReporteFrame extends JFrame {
     private JTable tablaReporte;
     private DefaultTableModel modelo;
 
-    private CategoriaController categoriaController;
+    private ReporteController reporteController;
 
     public ReporteFrame(ControlDeStockFrame controlDeStockFrame) {
         super("Reporte de produtos del stock");
 
-        this.categoriaController = new CategoriaController();
+        this.reporteController = new ReporteController();
 
         Container container = getContentPane();
         setLayout(null);
@@ -30,10 +31,10 @@ public class ReporteFrame extends JFrame {
         container.add(tablaReporte);
 
         modelo = (DefaultTableModel) tablaReporte.getModel();
-        modelo.addColumn("");
-        modelo.addColumn("");
-        modelo.addColumn("");
-        modelo.addColumn("");
+        modelo.addColumn("Producto");
+        modelo.addColumn("Categoria");
+//        modelo.addColumn("");
+//        modelo.addColumn("");
 
         cargaReporte();
 
@@ -43,11 +44,11 @@ public class ReporteFrame extends JFrame {
     }
 
     private void cargaReporte() {
-        var contenido = categoriaController.cargaReporte();
+        var contenido = reporteController.cargaReporte();
         
         // TODO
-        contenido.forEach(fila -> modelo
-                .addRow(new Object[] {}));
+//        contenido.forEach(fila -> modelo
+//                .addRow(new Object[] {}));
     }
 
 }
