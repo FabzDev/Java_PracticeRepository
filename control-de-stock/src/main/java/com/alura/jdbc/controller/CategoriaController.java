@@ -1,12 +1,10 @@
 package com.alura.jdbc.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.alura.jdbc.clases.ConnectionFactory;
 import com.alura.jdbc.modelo.Categoria;
 import com.alura.jdbc.modelo.CategoriaDAO;
-import com.alura.jdbc.modelo.ProductoDAO;
 
 public class CategoriaController {
 	
@@ -20,9 +18,8 @@ public class CategoriaController {
 		return categoriaDAO.listar();
 	}
 
-    public List<?> cargaReporte() {
-        // TODO
-        return new ArrayList<>();
-    }
+//    public List<Categoria> cargaReporte() {
+//    	return categoriaDAO.listarCategoriasReporte();
+//    }
 
 }

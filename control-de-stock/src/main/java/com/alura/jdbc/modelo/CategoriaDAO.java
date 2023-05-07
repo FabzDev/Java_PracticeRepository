@@ -37,4 +37,27 @@ public class CategoriaDAO {
 		}
 		return categorias;
 	}
+
+//	public List<Categoria> listarCategoriasReporte() {
+//		List<Categoria> categorias = new ArrayList<>();
+//
+//		try {
+//			final PreparedStatement statement = con.prepareStatement("SELECT NOMBRE FROM CATEGORIA");
+//
+//			try (statement) {
+//				final ResultSet resultSet = statement.executeQuery();
+//
+//				try (resultSet) {
+//					while (resultSet.next()) {
+//						Categoria categoria = new Categoria(resultSet.getInt("ID"), resultSet.getString("NOMBRE"));
+//						categorias.add(categoria);
+//					}
+//				}
+//			}
+//		} catch (SQLException e) {
+//			throw new RuntimeException(e);
+//		}
+//		return categorias;
+//	}
+
 }
