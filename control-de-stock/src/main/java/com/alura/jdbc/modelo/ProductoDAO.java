@@ -85,7 +85,33 @@ public class ProductoDAO {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	public List<Producto> listar(Integer categoriaId) {
+		Connection con = new ConnectionFactory().recuperaConexion();
+		try (con) {
+			final PreparedStatement statement = con
+					.prepareStatement("SELECT ID, NOMBRE, DESCRIPCION, CANTIDAD FROM PRODUCTO WHERE CATEGORIA_ID = ?");
+							
+			try (statement) {
+				statement.setInt(1, categoriaId);
+				statement.execute();
+				final ResultSet resultSet = statement.getResultSet();
+				try (resultSet) {
+					List<Producto> productos = new ArrayList<>();
+					while (resultSet.next()) {
+						Producto result = new Producto(resultSet.getInt("ID"), resultSet.getString("NOMBRE"),
+								resultSet.getString("DESCRIPCION"), resultSet.getInt("CANTIDAD"));
+						productos.add(result);
+					}
 
+					return productos;
+				}
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
 	public void modificar(Producto producto) {
 		Connection con = new ConnectionFactory().recuperaConexion();
 		try (con) {

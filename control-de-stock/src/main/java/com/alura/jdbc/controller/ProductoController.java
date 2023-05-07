@@ -26,6 +26,10 @@ public class ProductoController {
 	public List<Producto> listar() {
 		return productoDAO.listar();
 			}
+	
+	public List<Producto> listar(Integer categoriaId) {
+		return productoDAO.listar(categoriaId);
+			}
 
 	public void guardar(Producto producto) {
 		productoDAO.guardarProducto(producto);
