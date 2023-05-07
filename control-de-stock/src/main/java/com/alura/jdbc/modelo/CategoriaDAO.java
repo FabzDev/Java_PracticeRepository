@@ -20,8 +20,10 @@ public class CategoriaDAO {
 		List<Categoria> categorias = new ArrayList<>();
 
 		try {
-			final PreparedStatement statement = con.prepareStatement("SELECT ID, NOMBRE FROM CATEGORIA");
-
+			final String sqlQuery = "SELECT ID, NOMBRE FROM CATEGORIA";
+			System.out.println(sqlQuery);
+			final PreparedStatement statement = con.prepareStatement(sqlQuery);
+			
 			try (statement) {
 				final ResultSet resultSet = statement.executeQuery();
 

@@ -40,7 +40,6 @@ public class ReporteFrame extends JFrame {
 		modelo.addColumn("");
 		modelo.addColumn("");
 		modelo.addColumn("");
-		modelo.addColumn("");
 
 		cargaReporte();
 

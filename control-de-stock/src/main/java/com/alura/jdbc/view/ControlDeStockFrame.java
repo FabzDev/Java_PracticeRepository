@@ -56,7 +56,7 @@ public class ControlDeStockFrame extends JFrame {
 		modelo.addColumn("Identificador del Producto");
 		modelo.addColumn("Nombre del Producto");
 		modelo.addColumn("Descripción del Producto");
-		modelo.addColumn("Cantidaaaaaaaaaaaaaaad");
+		modelo.addColumn("Cantidad");
 		modelo.addColumn("Categoria ID");
 
 		cargarTabla();

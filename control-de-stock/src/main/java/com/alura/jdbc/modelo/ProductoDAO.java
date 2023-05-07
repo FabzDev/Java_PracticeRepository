@@ -12,7 +12,7 @@ import com.alura.jdbc.clases.ConnectionFactory;
 
 public class ProductoDAO {
 	
-	private Connection con;
+	final private Connection con;
 
 	public ProductoDAO(Connection con) {
 		this.con = con;
@@ -25,8 +25,10 @@ public class ProductoDAO {
 		try (con) {
 			con.setAutoCommit(false);
 
+			final String sqlQuery = "INSERT INTO PRODUCTO(nombre, descripcion, cantidad, categoria_id) VALUES(?,?,?,?)";
+			System.out.println(sqlQuery);
 			PreparedStatement statement = con.prepareStatement(
-					"INSERT INTO PRODUCTO(nombre, descripcion, cantidad, categoria_id) VALUES(?,?,?,?)",
+					sqlQuery,
 					Statement.RETURN_GENERATED_KEYS);
 			try (statement) {
 				do {
