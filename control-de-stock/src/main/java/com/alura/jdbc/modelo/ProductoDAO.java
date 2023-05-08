@@ -21,7 +21,7 @@ public class ProductoDAO {
 	public void guardarProducto(Producto producto) {
 		Integer cantidad = producto.getCantidad();
 		Integer maxCant = 50;
-		Connection con = new ConnectionFactory().recuperaConexion();
+//		Connection con = new ConnectionFactory().recuperaConexion();
 		try (con) {
 			con.setAutoCommit(false);
 
