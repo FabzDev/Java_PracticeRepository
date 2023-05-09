@@ -20,7 +20,7 @@ public class HolaMundoServlet extends HttpServlet{
 
 		out.println("<html>");
 		out.println("<body>");
- 		out.println("Hola mundo! Felicitaciones por cretu primer servlet!");
+ 		out.println("Hola mundo! Felicitaciones por crear tu primer servlet!");
 		out.println("</body>");
 		out.println("</html>");
 		
