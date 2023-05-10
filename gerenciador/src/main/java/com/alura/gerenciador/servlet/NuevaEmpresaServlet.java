@@ -16,6 +16,11 @@ public class NuevaEmpresaServlet extends HttpServlet {
 
 		String nombre  = req.getParameter("name"); 
 		
+		Empresa nuevaEmpresa = new Empresa();
+		nuevaEmpresa.setNombreEmpresa(nombre);
+		
+		DB baseDeDatos = new DB();
+		baseDeDatos.agregarEmpresa(nuevaEmpresa);
 		
 		PrintWriter out = resp.getWriter();
 		out.println("<html>");
