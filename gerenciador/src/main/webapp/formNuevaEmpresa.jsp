@@ -15,9 +15,17 @@
 
 		<h2>Nueva Empresa:</h2>
 		<input type="text" name="name" /> <br> 
+		
+		<h3>Fecha de apertura</h3>
+		<input type="text" name="date" /> <br> 
+		
+		<br>
+		
 		<input type="submit" />
 
 	</form>
+	
+	
 
 </body>
 </html>
