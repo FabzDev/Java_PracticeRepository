@@ -12,6 +12,16 @@
 		<title>Java Standard TagLib</title>
 	</head>
 	<body>
+	<c:if test="${not empty empresa}">
+	${empresa}: Empresa registrada con exito
+	</c:if>
+
+	<c:if test="${empty empresa}">
+	No se registro ninguna Empresa
+	</c:if>
+	
+	<br>
+	
 	<h2>Lista de empresas:</h2>
 		<ul>
 			
