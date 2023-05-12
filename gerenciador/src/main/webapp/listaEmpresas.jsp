@@ -7,11 +7,11 @@
 
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Java Standard TagLib</title>
-	</head>
-	<body>
+<head>
+<meta charset="UTF-8">
+<title>Java Standard TagLib</title>
+</head>
+<body>
 	<c:if test="${not empty empresa}">
 	${empresa}: Empresa registrada con exito
 	</c:if>
@@ -19,16 +19,18 @@
 	<c:if test="${empty empresa}">
 	No se registro ninguna Empresa
 	</c:if>
-	
+
 	<br>
-	
+
 	<h2>Lista de empresas:</h2>
-		<ul>
-			
-			<c:forEach items="${listaNombres}" var="empresa">
-			<li> ${empresa.nombreEmpresa} - <fmt:formatDate value="${empresa.fechaApertura}" pattern="dd/MM/yyyy"/></li>
-			</c:forEach>
-			
-		</ul>
-	</body>
+	<ul>
+
+		<c:forEach items="${listaNombres}" var="empresa">
+			<li>${empresa.nombreEmpresa} - <fmt:formatDate
+					value="${empresa.fechaApertura}" pattern="dd/MM/yyyy" /> <a
+				href="/gerenciador/borrarEmpresa?id=${empresa.id}">delete</a></li>
+		</c:forEach>
+
+	</ul>
+</body>
 </html>
