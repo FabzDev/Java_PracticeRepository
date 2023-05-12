@@ -24,9 +24,9 @@ public class BorrarEmpresaServlet extends HttpServlet {
 		dataBaseParaDelete.eliminarEmpresa(dataBaseParaDelete.getEmpresa(id));
 		
 		
-
-		RequestDispatcher rd = req.getRequestDispatcher("/listaEmpresas");
-		rd.forward(req, resp);
+		resp.sendRedirect("listaEmpresas");
+//		RequestDispatcher rd = req.getRequestDispatcher("/listaEmpresas");
+//		rd.forward(req, resp);
 		
 	}
 }
