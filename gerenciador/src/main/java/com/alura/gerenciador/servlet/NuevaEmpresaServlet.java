@@ -35,10 +35,11 @@ public class NuevaEmpresaServlet extends HttpServlet {
 		DB baseDeDatos = new DB();
 		baseDeDatos.agregarEmpresa(nuevaEmpresa);
 		
-		RequestDispatcher rd = req.getRequestDispatcher("/listaEmpresas");
-		req.setAttribute("empresa", nuevaEmpresa.getNombreEmpresa());
+		resp.sendRedirect("listaEmpresas");
 		
-		rd.forward(req, resp);
+//		RequestDispatcher rd = req.getRequestDispatcher("/listaEmpresas");
+//		req.setAttribute("empresa", nuevaEmpresa.getNombreEmpresa());
+//		rd.forward(req, resp);
 		
 	}
 }
