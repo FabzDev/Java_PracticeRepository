@@ -18,9 +18,10 @@ public class ModificarEmpresaServlet extends HttpServlet {
 		Integer id = Integer.valueOf(paramId);
 		DB dataBaseParaUpdate = new DB();
 		Empresa empresaParaUpdate = dataBaseParaUpdate.getEmpresa(id);
-		dataBaseParaUpdate.eliminarEmpresa(dataBaseParaUpdate.getEmpresa(id));
-		
+//		dataBaseParaUpdate.eliminarEmpresa(dataBaseParaUpdate.getEmpresa(id));
 //		resp.sendRedirect("/gerenciador/formNuevaEmpresa.jsp");
+		
+		
 		req.setAttribute("empresaObjeto", empresaParaUpdate);
 		RequestDispatcher rd = req.getRequestDispatcher("/modificarEmpresa.jsp");
 		rd.forward(req, resp);

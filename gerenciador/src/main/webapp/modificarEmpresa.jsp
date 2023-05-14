@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:url value="/nuevaEmpresa" var="urlNuevaEmpresaRegistrada" />
+<c:url value="/modificadorServlet" var="urlNuevaEmpresaRegistrada" />
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 
@@ -18,10 +18,11 @@
 		<input type="text" name="name" value="${empresaObjeto.nombreEmpresa}" />
 
 		<h3>Nueva Fecha de apertura:</h3>
-		<input type="text" name="date" value="<fmt:formatDate
+		<input type="text" name="date"
+			value="<fmt:formatDate
 					value="${empresaObjeto.fechaApertura}" pattern="dd/MM/yyyy" />" />
-
-		<input type="submit" />
+		<input type="hidden" name="id" value="${empresaObjeto.id}" /> <input
+			type="submit" />
 
 	</form>
 
