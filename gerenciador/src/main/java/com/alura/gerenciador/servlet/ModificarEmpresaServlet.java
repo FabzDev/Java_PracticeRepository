@@ -22,7 +22,7 @@ public class ModificarEmpresaServlet extends HttpServlet {
 		
 //		resp.sendRedirect("/gerenciador/formNuevaEmpresa.jsp");
 		req.setAttribute("empresaObjeto", empresaParaUpdate);
-		RequestDispatcher rd = req.getRequestDispatcher("/mostrarEmpresa.jsp");
+		RequestDispatcher rd = req.getRequestDispatcher("/modificarEmpresa.jsp");
 		rd.forward(req, resp);
 		
 	}
