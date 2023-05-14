@@ -23,8 +23,8 @@ public class DB {
 	}
 	
 	public void agregarEmpresa(Empresa empresa) {
-		DB.listaEmpresasDB.add(empresa);
 		empresa.setId(DB.secuencialEmpresa++);
+		DB.listaEmpresasDB.add(empresa);
 	}
 	
 	public void eliminarEmpresa(Empresa empresa) {

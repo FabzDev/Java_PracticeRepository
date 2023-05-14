@@ -9,13 +9,11 @@
 </head>
 <body> 
 	
-
-	
 	<form action="${urlNuevaEmpresaRegistrada}" method="post">
 
 		<h2>Nueva Empresa:</h2>
+		
 		<input type="text" name="name" />
-		<a href="/gerenciador/listaEmpresas.jsp">delete</a>
 		
 		<h3>Fecha de apertura</h3>
 		<input type="text" name="date" /> <br> 
