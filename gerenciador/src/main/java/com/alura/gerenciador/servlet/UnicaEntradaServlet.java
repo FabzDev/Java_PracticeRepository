@@ -20,23 +20,14 @@ public class UnicaEntradaServlet extends HttpServlet {
 		String paramAccion = request.getParameter("accion");
 
 		if (paramAccion.equals("ListaEmpresas")) {
-
 			ListaEmpresas accionLista = new ListaEmpresas();
 			accionLista.ejecutar(request, response);
-			System.out.println("ListaEmpresas ejecutado");
-
 		} else if (paramAccion.equals("ModificarEmpresa")) {
-
 			ModificarEmpresa accionModificar = new ModificarEmpresa();
 			accionModificar.ejecutar(request, response);
-			System.out.println("ModificarEmpresa ejecutado");
-
 		} else if (paramAccion.equals("EliminarEmpresa")) {
-
 			EliminarEmpresa accionEliminar = new EliminarEmpresa();
 			accionEliminar.ejecutar(request, response);
-			System.out.println("EliminarEmpresa ejecutado");
-
 		}
 	}
 

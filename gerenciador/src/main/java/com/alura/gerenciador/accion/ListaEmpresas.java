@@ -20,6 +20,8 @@ public class ListaEmpresas {
 		req.setAttribute("listaNombres", listaEmpresas);
 		RequestDispatcher rd = req.getRequestDispatcher("/listaEmpresas.jsp");
 		rd.forward(req, resp);	
+		
+		System.out.println("ListaEmpresas ejecutado");
 	}
 
 }

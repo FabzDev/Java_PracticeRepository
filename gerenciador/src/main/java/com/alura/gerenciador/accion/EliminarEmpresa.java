@@ -21,5 +21,7 @@ public class EliminarEmpresa {
 //		RequestDispatcher rd = req.getRequestDispatcher("/listaEmpresas");
 //		rd.forward(req, resp);
 		
+		System.out.println("EliminarEmpresa ejecutado");
+		
 	}
 }
