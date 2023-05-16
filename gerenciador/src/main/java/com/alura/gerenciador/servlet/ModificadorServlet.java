@@ -36,7 +36,7 @@ public class ModificadorServlet extends HttpServlet {
 		empresaParaActualizar.setNombreEmpresa(nombre);
 		empresaParaActualizar.setFechaApertura(fechaApertura);
 		
-		response.sendRedirect("listaEmpresas");
+		response.sendRedirect("entrada?accion=ListaEmpresas");
 //		request.setAttribute("empresaObjeto", empresaParaUpdate);
 //		RequestDispatcher rd = request.getRequestDispatcher("/listaEmpresas");
 //		rd.forward(request, response);
