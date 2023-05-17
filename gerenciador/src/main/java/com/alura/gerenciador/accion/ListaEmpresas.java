@@ -11,7 +11,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class ListaEmpresas {
+public class ListaEmpresas implements Accion{
 	
 	public String ejecutar(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		DB database = new DB();	
@@ -22,7 +22,7 @@ public class ListaEmpresas {
 		
 		System.out.println("Renderizando lista de empresas");
 		
-		return "forward:/listaEmpresas.jsp";
+		return "forward:listaEmpresas.jsp";
 		
 	}
 

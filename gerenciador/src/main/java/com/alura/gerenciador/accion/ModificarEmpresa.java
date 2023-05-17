@@ -10,7 +10,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class ModificarEmpresa {
+public class ModificarEmpresa implements Accion{
 
 	public String ejecutar(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String paramId = req.getParameter("id");
@@ -24,6 +24,6 @@ public class ModificarEmpresa {
 		
 		System.out.println("Redirigiendo a modificarEmpresa.jsp");
 
-		return "forward:/modificarEmpresa.jsp";
+		return "forward:modificarEmpresa.jsp";
 	}
 }

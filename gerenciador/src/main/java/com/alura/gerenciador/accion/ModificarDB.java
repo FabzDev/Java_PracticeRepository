@@ -12,7 +12,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class ModificarEmpresaEnDB {
+public class ModificarDB implements Accion {
 	
 	public String ejecutar(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String paramId = req.getParameter("id");
