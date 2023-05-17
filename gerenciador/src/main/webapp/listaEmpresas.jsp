@@ -1,4 +1,4 @@
-<%@page import="com.alura.gerenciador.servlet.Empresa"%>
+<%@page import="com.alura.gerenciador.modelo.Empresa"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>

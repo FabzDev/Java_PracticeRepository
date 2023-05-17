@@ -5,8 +5,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.alura.gerenciador.servlet.DB;
-import com.alura.gerenciador.servlet.Empresa;
+import com.alura.gerenciador.modelo.DB;
+import com.alura.gerenciador.modelo.Empresa;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

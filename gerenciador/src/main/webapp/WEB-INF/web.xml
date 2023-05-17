@@ -6,56 +6,6 @@
   </welcome-file-list>
   <servlet>
     <description></description>
-    <display-name>NuevaEmpresaServlet</display-name>
-    <servlet-name>NuevaEmpresaServlet</servlet-name>
-    <servlet-class>com.alura.gerenciador.servlet.NuevaEmpresaServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>NuevaEmpresaServlet</servlet-name>
-    <url-pattern>/nuevaEmpresa</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ListaEmpresasServlet</display-name>
-    <servlet-name>ListaEmpresasServlet</servlet-name>
-    <servlet-class>com.alura.gerenciador.servlet.ListaEmpresasServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ListaEmpresasServlet</servlet-name>
-    <url-pattern>/listaEmpresas</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>BorrarEmpresaServlet</display-name>
-    <servlet-name>BorrarEmpresaServlet</servlet-name>
-    <servlet-class>com.alura.gerenciador.servlet.BorrarEmpresaServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>BorrarEmpresaServlet</servlet-name>
-    <url-pattern>/borrarEmpresa</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ModificarEmpresaServlet</display-name>
-    <servlet-name>ModificarEmpresaServlet</servlet-name>
-    <servlet-class>com.alura.gerenciador.servlet.ModificarEmpresaServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ModificarEmpresaServlet</servlet-name>
-    <url-pattern>/modificarEmpresa</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ModificadorServlet</display-name>
-    <servlet-name>ModificadorServlet</servlet-name>
-    <servlet-class>com.alura.gerenciador.servlet.ModificadorServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ModificadorServlet</servlet-name>
-    <url-pattern>/modificadorServlet</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
     <display-name>UnicaEntradaServlet</display-name>
     <servlet-name>UnicaEntradaServlet</servlet-name>
     <servlet-class>com.alura.gerenciador.servlet.UnicaEntradaServlet</servlet-class>

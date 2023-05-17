@@ -2,8 +2,8 @@ package com.alura.gerenciador.accion;
 
 import java.io.IOException;
 
-import com.alura.gerenciador.servlet.DB;
-import com.alura.gerenciador.servlet.Empresa;
+import com.alura.gerenciador.modelo.DB;
+import com.alura.gerenciador.modelo.Empresa;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
