@@ -21,7 +21,7 @@ public class ListaEmpresas {
 		RequestDispatcher rd = req.getRequestDispatcher("/listaEmpresas.jsp");
 		rd.forward(req, resp);	
 		
-		System.out.println("ListaEmpresas ejecutado");
+		System.out.println("Renderizando lista de empresas");
 	}
 
 }

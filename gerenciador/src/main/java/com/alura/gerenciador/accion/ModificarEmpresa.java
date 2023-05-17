@@ -24,7 +24,7 @@ public class ModificarEmpresa {
 		RequestDispatcher rd = req.getRequestDispatcher("/modificarEmpresa.jsp");
 		rd.forward(req, resp);
 		
-		System.out.println("ModificarEmpresa ejecutado");
+		System.out.println("Redirigiendo a modificarEmpresa.jsp");
 
 	}
 }

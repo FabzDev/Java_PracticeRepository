@@ -5,6 +5,8 @@ import java.io.IOException;
 import com.alura.gerenciador.accion.EliminarEmpresa;
 import com.alura.gerenciador.accion.ListaEmpresas;
 import com.alura.gerenciador.accion.ModificarEmpresa;
+import com.alura.gerenciador.accion.ModificarEmpresaEnDB;
+import com.alura.gerenciador.accion.NuevaEmpresa;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -18,7 +20,8 @@ public class UnicaEntradaServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		String paramAccion = request.getParameter("accion");
-
+		
+		
 		if (paramAccion.equals("ListaEmpresas")) {
 			ListaEmpresas accionLista = new ListaEmpresas();
 			accionLista.ejecutar(request, response);
@@ -28,6 +31,12 @@ public class UnicaEntradaServlet extends HttpServlet {
 		} else if (paramAccion.equals("EliminarEmpresa")) {
 			EliminarEmpresa accionEliminar = new EliminarEmpresa();
 			accionEliminar.ejecutar(request, response);
+		} else if(paramAccion.equals("ModificarDB")) {
+			ModificarEmpresaEnDB accionModificarDB = new ModificarEmpresaEnDB();
+			accionModificarDB.ejecutar(request, response);
+		} else if(paramAccion.equals("NuevaEmpresa")) {
+			NuevaEmpresa accionNuevaEmpresa = new NuevaEmpresa();
+			accionNuevaEmpresa.ejecutar(request, response);
 		}
 	}
 
