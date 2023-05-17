@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 public class ModificarEmpresaEnDB {
 	
-	public void ejecutar(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	public String ejecutar(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String paramId = req.getParameter("id");
 		Integer id = Integer.valueOf(paramId);
 		String nombre  = req.getParameter("name"); 
@@ -36,12 +36,12 @@ public class ModificarEmpresaEnDB {
 		empresaParaActualizar.setNombreEmpresa(nombre);
 		empresaParaActualizar.setFechaApertura(fechaApertura);
 		
-		resp.sendRedirect("entrada?accion=ListaEmpresas");
+	
 //		request.setAttribute("empresaObjeto", empresaParaUpdate);
 //		RequestDispatcher rd = request.getRequestDispatcher("/listaEmpresas");
 //		rd.forward(request, response);
 		
-		System.out.println("Modificando empresa #" + id);
+		return "redirect:entrada?accion=ListaEmpresas";
 
 		
 	}

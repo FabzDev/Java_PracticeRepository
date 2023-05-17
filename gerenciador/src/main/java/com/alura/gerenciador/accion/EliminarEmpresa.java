@@ -10,18 +10,16 @@ import jakarta.servlet.http.HttpServletResponse;
 
 public class EliminarEmpresa {
 
-	public void ejecutar(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException { 
+	public String ejecutar(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException { 
 		String paramId = req.getParameter("id");
 		Integer id = Integer.valueOf(paramId);
 		DB dataBaseParaDelete = new DB();
 		dataBaseParaDelete.eliminarEmpresa(dataBaseParaDelete.getEmpresa(id));
 		
-		
-		resp.sendRedirect("entrada?accion=ListaEmpresas");
 //		RequestDispatcher rd = req.getRequestDispatcher("/listaEmpresas");
 //		rd.forward(req, resp);
 		
 		System.out.println("Eliminando empresa #" + id);
-		
+		return "redirect:entrada?accion=ListaEmpresas";
 	}
 }

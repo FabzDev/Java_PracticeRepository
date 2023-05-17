@@ -8,6 +8,7 @@ import com.alura.gerenciador.accion.ModificarEmpresa;
 import com.alura.gerenciador.accion.ModificarEmpresaEnDB;
 import com.alura.gerenciador.accion.NuevaEmpresa;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -20,23 +21,33 @@ public class UnicaEntradaServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		String paramAccion = request.getParameter("accion");
-		
+		String result = null;
 		
 		if (paramAccion.equals("ListaEmpresas")) {
 			ListaEmpresas accionLista = new ListaEmpresas();
-			accionLista.ejecutar(request, response);
+			result = accionLista.ejecutar(request, response);
+			
 		} else if (paramAccion.equals("ModificarEmpresa")) {
 			ModificarEmpresa accionModificar = new ModificarEmpresa();
-			accionModificar.ejecutar(request, response);
+			result = accionModificar.ejecutar(request, response);
 		} else if (paramAccion.equals("EliminarEmpresa")) {
 			EliminarEmpresa accionEliminar = new EliminarEmpresa();
-			accionEliminar.ejecutar(request, response);
+			result = accionEliminar.ejecutar(request, response);
 		} else if(paramAccion.equals("ModificarDB")) {
 			ModificarEmpresaEnDB accionModificarDB = new ModificarEmpresaEnDB();
-			accionModificarDB.ejecutar(request, response);
+			result = accionModificarDB.ejecutar(request, response);
 		} else if(paramAccion.equals("NuevaEmpresa")) {
 			NuevaEmpresa accionNuevaEmpresa = new NuevaEmpresa();
-			accionNuevaEmpresa.ejecutar(request, response);
+			result = accionNuevaEmpresa.ejecutar(request, response);
+		}
+		
+		String[] tipoDireccion = result.split(":");
+		
+		if(tipoDireccion[0].equals("forward")) {
+			RequestDispatcher rd = request.getRequestDispatcher(tipoDireccion[1]);
+			rd.forward(request, response);
+		}else if (tipoDireccion[0].equals("redirect")){
+			response.sendRedirect(tipoDireccion[1]);
 		}
 	}
 

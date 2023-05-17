@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 public class NuevaEmpresa {
 
-	public void ejecutar(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	public String ejecutar(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String nombre = req.getParameter("name");
 		String paramFechaApertura = req.getParameter("date");
 		Date fechaApertura;
@@ -33,13 +33,13 @@ public class NuevaEmpresa {
 		DB baseDeDatos = new DB();
 		baseDeDatos.agregarEmpresa(nuevaEmpresa);
 
-		resp.sendRedirect("entrada?accion=ListaEmpresas");
+		
 
 //		RequestDispatcher rd = req.getRequestDispatcher("/listaEmpresas");
 //		req.setAttribute("empresa", nuevaEmpresa.getNombreEmpresa());
 //		rd.forward(req, resp);
 		
-		System.out.println("Creada nueva empresa: " + nombre);
+		return "redirect:entrada?accion=ListaEmpresas";
 
 	}
 
