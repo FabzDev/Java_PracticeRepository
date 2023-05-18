@@ -6,10 +6,10 @@ import java.util.List;
 import com.alura.gerenciador.modelo.DB;
 import com.alura.gerenciador.modelo.Empresa;
 
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 public class ListaEmpresas implements Accion{
 	
@@ -18,7 +18,10 @@ public class ListaEmpresas implements Accion{
 		List<Empresa> listaEmpresas = database.getEmpresas();
 					
 		req.setAttribute("listaNombres", listaEmpresas);
-			
+		HttpSession session = req.getSession();
+		if(session.getAttribute("user") == null) {
+			return "redirect:entrada?accion=IngresarUsuario";
+		}
 		
 		System.out.println("Renderizando lista de empresas");
 		
