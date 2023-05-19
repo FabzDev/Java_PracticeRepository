@@ -14,28 +14,31 @@ import jakarta.servlet.http.HttpSession;
 public class IngresarUsuario implements Accion {
 
 	@Override
-	public String ejecutar(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	public String ejecutar(HttpServletRequest req, HttpServletResponse resp, HttpSession session)
+			throws ServletException, IOException {
 
 		String usuario = req.getParameter("usuario");
 		String contrasena = req.getParameter("contrasena");
 
 		DB db = new DB();
-		List<Usuario> listaUsuarios = db.getUsuarios();
+		System.out.println(usuario);
+		System.out.println(contrasena);
+		Usuario existeUsuario2 = db.encontrarUsuario(usuario);
+		System.out.println(existeUsuario2);
+		if (existeUsuario2 != null) {
+			System.out.println("not null");
 
-		Usuario existeUsuario = db.encontrarUsuario(usuario);
-		
-		if (existeUsuario != null) {
-			System.out.println("Usuario validado");
-			HttpSession session = req.getSession();
-			System.out.println(session.getId());
-			session.setAttribute("user", existeUsuario);
-			return "redirect:entrada?accion=ListaEmpresas";
-
+			if (existeUsuario2.getContrasena().equals(contrasena)) {
+				System.out.println("Usuario validado");
+				session.setAttribute("existeUsuario", existeUsuario2);
+				return "redirect:entrada?accion=ListaEmpresas";
+			} else {
+				System.out.println("Usuario no validado");
+				return "redirect:entrada?accion=IngresarUsuarioForm";
+			}
 		} else {
 			System.out.println("Usuario no validado");
 			return "redirect:entrada?accion=IngresarUsuarioForm";
 		}
 	}
-
 }
-//70907

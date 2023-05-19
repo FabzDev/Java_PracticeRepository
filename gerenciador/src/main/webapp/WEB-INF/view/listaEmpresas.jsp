@@ -12,16 +12,16 @@
 <title>Java Standard TagLib</title>
 </head>
 <body>
-	User: ${user.login} 
+	User: ${existeUsuario.login} 
 
-	<c:if test="${not empty empresa}">
-	${empresa}: Empresa registrada con exito
-	</c:if>
-	<br>
-	<br>
-	<c:if test="${empty empresa}">
-	No se registro ninguna Empresa
-	</c:if>
+<%-- 	<c:if test="${not empty empresa}"> --%>
+<%-- 	${empresa}: Empresa registrada con exito --%>
+<%-- 	</c:if> --%>
+<!-- 	<br> -->
+<!-- 	<br> -->
+<%-- 	<c:if test="${empty empresa}"> --%>
+<!-- 	No se registro ninguna Empresa -->
+<%-- 	</c:if> --%>
 
 	<br>
 
