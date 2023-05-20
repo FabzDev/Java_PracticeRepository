@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpSession;
 
 public class formNuevaEmpresa implements Accion {
 
-	public String ejecutar(HttpServletRequest req, HttpServletResponse resp, HttpSession session)
+	public String ejecutar(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
 		System.out.println("Controller Form Nueva Empresa");

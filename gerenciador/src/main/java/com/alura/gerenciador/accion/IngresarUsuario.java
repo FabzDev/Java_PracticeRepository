@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpSession;
 public class IngresarUsuario implements Accion {
 
 	@Override
-	public String ejecutar(HttpServletRequest req, HttpServletResponse resp, HttpSession session)
+	public String ejecutar(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
 		System.out.println("Controller Ingresar Usuario");
@@ -25,6 +25,8 @@ public class IngresarUsuario implements Accion {
 		DB db = new DB();
 		Usuario usuarioDB = db.encontrarUsuario(usuario);
 
+		HttpSession session = req.getSession();
+		
 		if (usuarioDB != null) {
 			if (usuarioDB.getContrasena().equals(contrasena)) {
 				System.out.println("Usuario validado");

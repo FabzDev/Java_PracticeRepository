@@ -23,7 +23,7 @@ public class MonitorFilter implements Filter{
 		chain.doFilter(req, resp);
 		Long af = System.currentTimeMillis();
 		
-		System.out.println("Tiempo de ejecución de "+ stringAccion + " ->" + (af - bf));
+		System.out.println("Tiempo de ejecución de "+ stringAccion + " -> " + (af - bf));
 	}
 
 }

@@ -36,7 +36,7 @@ public class UnicaEntradaServlet extends HttpServlet {
 			
 			if (stringAccion.equals("formIngresarUsuario") || stringAccion.equals("IngresarUsuario") || usuarioLogin != null){
 				System.out.println(1);
-				result = accion.ejecutar(request, response, session);
+				result = accion.ejecutar(request, response);
 			} else {
 				System.out.println(2);
 				RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/view/formIngresarUsuario.jsp");

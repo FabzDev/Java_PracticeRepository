@@ -8,5 +8,5 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 public interface Accion {
-	public String ejecutar(HttpServletRequest req, HttpServletResponse resp, HttpSession session) throws ServletException, IOException;
+	public String ejecutar(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException;
 }
