@@ -16,29 +16,25 @@ public class IngresarUsuario implements Accion {
 	@Override
 	public String ejecutar(HttpServletRequest req, HttpServletResponse resp, HttpSession session)
 			throws ServletException, IOException {
-
+		
+		System.out.println("Controller Ingresar Usuario");
+		
 		String usuario = req.getParameter("usuario");
 		String contrasena = req.getParameter("contrasena");
 
 		DB db = new DB();
-		System.out.println(usuario);
-		System.out.println(contrasena);
-		Usuario existeUsuario2 = db.encontrarUsuario(usuario);
-		System.out.println(existeUsuario2);
-		if (existeUsuario2 != null) {
-			System.out.println("not null");
+		Usuario usuarioDB = db.encontrarUsuario(usuario);
 
-			if (existeUsuario2.getContrasena().equals(contrasena)) {
+		if (usuarioDB != null) {
+			if (usuarioDB.getContrasena().equals(contrasena)) {
 				System.out.println("Usuario validado");
-				session.setAttribute("existeUsuario", existeUsuario2);
+				session.setAttribute("usuarioDB", usuarioDB);
 				return "redirect:entrada?accion=ListaEmpresas";
-			} else {
-				System.out.println("Usuario no validado");
-				return "redirect:entrada?accion=IngresarUsuarioForm";
 			}
-		} else {
-			System.out.println("Usuario no validado");
-			return "redirect:entrada?accion=IngresarUsuarioForm";
+			System.out.println("Contrasena incorrecta");
+			return "redirect:entrada?accion=formIngresarUsuario";
 		}
+		System.out.println("El usuario ingresado no existe");
+		return "redirect:entrada?accion=formIngresarUsuario";
 	}
 }

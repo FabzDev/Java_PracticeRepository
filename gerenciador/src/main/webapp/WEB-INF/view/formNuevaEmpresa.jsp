@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Ingresar nueva Empresa</title>
 </head>
 <body>
 
@@ -13,10 +13,10 @@
 
 		<h2>Nueva Empresa</h2>
 
-		<input type="text" name="name" />
+		<input type="text" name="nombre" />
 
 		<h3>Fecha de apertura</h3>
-		<input type="text" name="date" /> <br> <br> <input
+		<input type="text" name="fecha" /> <br> <br> <input
 			type="submit" />
 
 	</form>

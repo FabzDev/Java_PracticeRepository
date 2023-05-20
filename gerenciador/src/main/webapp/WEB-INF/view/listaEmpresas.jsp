@@ -9,10 +9,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Java Standard TagLib</title>
+<title>Lista de Empresas</title>
 </head>
 <body>
-	User: ${existeUsuario.login} 
+	User: ${usuarioDB.login} 
 
 <%-- 	<c:if test="${not empty empresa}"> --%>
 <%-- 	${empresa}: Empresa registrada con exito --%>
@@ -28,10 +28,10 @@
 	<h2>Lista de empresas:</h2>
 	<ul>
 
-		<c:forEach items="${listaNombres}" var="empresa">
+		<c:forEach items="${listaEmpresas}" var="empresa">
 			<li>${empresa.nombreEmpresa}- <fmt:formatDate
 					value="${empresa.fechaApertura}" pattern="dd/MM/yyyy" />
-					<a href="/gerenciador/entrada?accion=ModificarEmpresa&id=${empresa.id}"> Modificar -</a>
+					<a href="/gerenciador/entrada?accion=GetEmpresaAModificar&id=${empresa.id}"> Modificar -</a>
 					<a href="/gerenciador/entrada?accion=EliminarEmpresa&id=${empresa.id}"> Eliminar </a></li>
 		</c:forEach>
 

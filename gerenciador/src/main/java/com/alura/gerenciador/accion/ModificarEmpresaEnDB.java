@@ -14,15 +14,19 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-public class NuevaEmpresa implements Accion {
+public class ModificarEmpresaEnDB implements Accion {
 
 	public String ejecutar(HttpServletRequest req, HttpServletResponse resp, HttpSession session)
 			throws ServletException, IOException {
 		
-		System.out.println("Controller Nueva Empresa");
+		System.out.println("Controller ModificarEmpresaEnDB");
+
 		
-		String nombre = req.getParameter("nombre");
-		String paramFechaApertura = req.getParameter("fecha");
+		String stringId = req.getParameter("idMod");
+		Integer id = Integer.valueOf(stringId);
+		
+		String nombre = req.getParameter("nombreMod");
+		String paramFechaApertura = req.getParameter("fechaMod");
 		Date fechaApertura;
 		
 		//formateando fecha
@@ -32,16 +36,14 @@ public class NuevaEmpresa implements Accion {
 		} catch (ParseException e) {
 			throw new ServletException(e);
 		}
-		
-		Empresa nuevaEmpresa = new Empresa();
-		nuevaEmpresa.setNombreEmpresa(nombre);
-		nuevaEmpresa.setFechaApertura(fechaApertura);
 
 		DB db = new DB();
-		db.agregarEmpresa(nuevaEmpresa);
+		Empresa empresaDB = db.getEmpresa(id);
+		
+		empresaDB.setNombreEmpresa(nombre);
+		empresaDB.setFechaApertura(fechaApertura);
 
 		return "redirect:entrada?accion=ListaEmpresas";
 
 	}
-
 }

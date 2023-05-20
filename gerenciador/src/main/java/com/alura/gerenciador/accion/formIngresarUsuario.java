@@ -7,9 +7,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-public class IngresarUsuarioForm implements Accion {
+public class formIngresarUsuario implements Accion {
 
 	public String ejecutar(HttpServletRequest req, HttpServletResponse resp, HttpSession session) throws ServletException, IOException {
+		
+		System.out.println("Controller Form Ingresar Usuario");
+		
 		return "forward:formIngresarUsuario.jsp";
 	}	
 }

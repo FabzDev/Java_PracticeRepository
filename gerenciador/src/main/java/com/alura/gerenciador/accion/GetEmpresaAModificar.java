@@ -3,30 +3,29 @@ package com.alura.gerenciador.accion;
 import java.io.IOException;
 
 import com.alura.gerenciador.modelo.DB;
+import com.alura.gerenciador.modelo.Empresa;
+import com.alura.gerenciador.modelo.Usuario;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-public class EliminarEmpresa implements Accion {
+public class GetEmpresaAModificar implements Accion {
 
 	public String ejecutar(HttpServletRequest req, HttpServletResponse resp, HttpSession session)
 			throws ServletException, IOException {
 		
-		System.out.println("Controller Eliminar Empresa");
+		System.out.println("Controller GetEmpresaAModificar");
 		
-		String stringId = req.getParameter("id");
-		Integer id = Integer.valueOf(stringId);
+		String paramId = req.getParameter("id");
+		Integer id = Integer.valueOf(paramId);
 		
 		DB db = new DB();
-		db.eliminarEmpresa(db.getEmpresa(id));
+		Empresa empresaDB = db.getEmpresa(id);
 
-		System.out.println("Eliminando empresa #" + id);
-		
-		return "redirect:entrada?accion=ListaEmpresas";
+		req.setAttribute("empresaObjeto", empresaDB);
+
+		return "forward:formModificarEmpresa.jsp";
 	}
 }
-
-//RequestDispatcher rd = req.getRequestDispatcher("/listaEmpresas");
-//rd.forward(req, resp);

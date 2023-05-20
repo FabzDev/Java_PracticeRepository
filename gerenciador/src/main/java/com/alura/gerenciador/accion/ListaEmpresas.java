@@ -15,21 +15,14 @@ import jakarta.servlet.http.HttpSession;
 public class ListaEmpresas implements Accion{
 	
 	public String ejecutar(HttpServletRequest req, HttpServletResponse resp, HttpSession session) throws ServletException, IOException {
+		
+		System.out.println("Controller Lista Empresas");
+		
 		DB database = new DB();	
-		List<Empresa> listaEmpresas = database.getEmpresas();
-					
-		req.setAttribute("listaNombres", listaEmpresas);
+		List<Empresa> listaEmpresas = database.getEmpresas();					
+		req.setAttribute("listaEmpresas", listaEmpresas);
 		
-		//codigo compartido
-//		Usuario usuarioExistente = (Usuario) session.getAttribute("existeUsuario");
-//		System.out.println(usuarioExistente);
-//		if(usuarioExistente == null) {
-//			return "redirect:entrada?accion=IngresarUsuario";
-//		}
-		
-		System.out.println("Renderizando lista de empresas");
 		return "forward:listaEmpresas.jsp";
-		
 	}
 
 }

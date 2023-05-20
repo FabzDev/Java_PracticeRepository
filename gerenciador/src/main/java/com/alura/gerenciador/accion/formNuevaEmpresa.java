@@ -9,17 +9,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-public class NuevaEmpresaForm implements Accion {
+public class formNuevaEmpresa implements Accion {
 
 	public String ejecutar(HttpServletRequest req, HttpServletResponse resp, HttpSession session)
 			throws ServletException, IOException {
 
-		// codigo compartido
-//		Usuario usuarioExistente = (Usuario) session.getAttribute("existeUsuario");
-//		if (usuarioExistente == null) {
-//			return "redirect:entrada?accion=IngresarUsuario";
-//		}
-
+		System.out.println("Controller Form Nueva Empresa");
+		
 		return "forward:formNuevaEmpresa.jsp";
 	}
 }
