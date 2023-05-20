@@ -4,18 +4,6 @@
   <welcome-file-list>
     <welcome-file>bienvenido.html</welcome-file>
   </welcome-file-list>
-  
-<!--   <servlet> -->
-<!--     <description></description> -->
-<!--     <display-name>UnicaEntradaServlet</display-name> -->
-<!--     <servlet-name>UnicaEntradaServlet</servlet-name> -->
-<!--     <servlet-class>com.alura.gerenciador.servlet.UnicaEntradaServlet</servlet-class> -->
-<!--   </servlet> -->
-<!--   <servlet-mapping> -->
-<!--     <servlet-name>UnicaEntradaServlet</servlet-name> -->
-<!--     <url-pattern>/entrada</url-pattern> -->
-<!--   </servlet-mapping> -->
-  
   <filter>
     <display-name>AutenticadorFilter</display-name>
     <filter-name>AutenticadorFilter</filter-name>
@@ -25,7 +13,6 @@
     <filter-name>AutenticadorFilter</filter-name>
     <url-pattern>/entrada</url-pattern>
   </filter-mapping>
-  
   <filter>
     <display-name>Servlet</display-name>
     <filter-name>Servlet</filter-name>
@@ -35,6 +22,4 @@
     <filter-name>Servlet</filter-name>
     <url-pattern>/entrada</url-pattern>
   </filter-mapping>
-  
-  
 </web-app>
