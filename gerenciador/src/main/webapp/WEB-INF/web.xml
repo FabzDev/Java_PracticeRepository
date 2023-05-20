@@ -14,4 +14,13 @@
     <servlet-name>UnicaEntradaServlet</servlet-name>
     <url-pattern>/entrada</url-pattern>
   </servlet-mapping>
+  <filter>
+    <display-name>AutenticadorFilter</display-name>
+    <filter-name>AutenticadorFilter</filter-name>
+    <filter-class>com.alura.gerenciador.servlet.AutenticadorFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>AutenticadorFilter</filter-name>
+    <url-pattern>/entrada</url-pattern>
+  </filter-mapping>
 </web-app>

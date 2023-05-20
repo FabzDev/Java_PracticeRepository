@@ -22,36 +22,27 @@ public class UnicaEntradaServlet extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		System.out.println("\n" + session);
-		
+
 		String stringAccion = request.getParameter("accion");
 		String nombreClase = "com.alura.gerenciador.accion." + stringAccion;
 		String result = "";
-		
+
 		Usuario usuarioLogin = (Usuario) session.getAttribute("usuarioDB");
-		
+
 		try {
 			Class clase = Class.forName(nombreClase);
 			Object obj = clase.newInstance();
 			Accion accion = (Accion) obj;
-			
-			if (stringAccion.equals("formIngresarUsuario") || stringAccion.equals("IngresarUsuario") || usuarioLogin != null){
-				System.out.println(1);
-				result = accion.ejecutar(request, response);
-			} else {
-				System.out.println(2);
-				RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/view/formIngresarUsuario.jsp");
-				rd.forward(request, response);
-				return;
-			}
-				
-				
+
+			result = accion.ejecutar(request, response);
+
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | ServletException
 				| IOException e) {
 			throw new ServletException(e);
 		}
 
 		String[] tipoDireccion = result.split(":");
-		
+
 		if (tipoDireccion[0].equals("forward")) {
 			RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/view/" + tipoDireccion[1]);
 			rd.forward(request, response);
