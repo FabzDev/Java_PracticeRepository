@@ -1,4 +1,4 @@
-<a href="/gerenciador/entrada?accion=formIngresarUsuario">Salir</a>
+<a href="/gerenciador/entrada?accion=Logout">Salir</a>
 <br>
 <br>
 <br>
