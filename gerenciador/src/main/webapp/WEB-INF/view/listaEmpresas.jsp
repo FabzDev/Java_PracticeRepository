@@ -12,6 +12,9 @@
 <title>Lista de Empresas</title>
 </head>
 <body>
+
+<c:import url="logout-part.jsp"></c:import>
+
 	User: ${usuarioDB.login} 
 
 <%-- 	<c:if test="${not empty empresa}"> --%>
