@@ -13,6 +13,7 @@ public class Direccion {
 	private String numero;
 	private String complemento;
 	private String distrito;
+	private String barrio;
 	private String ciudad;
 	
 	public Direccion() {
@@ -22,6 +23,7 @@ public class Direccion {
 		this.calle = datosDireccion.calle();
 		this.numero = datosDireccion.numero();
 		this.distrito = datosDireccion.distrito();
+		this.barrio = datosDireccion.barrio();
 		this.complemento = datosDireccion.complemento();
 		this.ciudad = datosDireccion.ciudad();
 	}

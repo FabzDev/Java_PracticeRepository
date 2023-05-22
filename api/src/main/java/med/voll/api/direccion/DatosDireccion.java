@@ -8,7 +8,10 @@ public record DatosDireccion(
 		String calle,
 		
 		@NotBlank
-		String distrito, 
+		String distrito,
+		
+		@NotBlank
+		String barrio,
 		
 		@NotBlank
 		String ciudad, 
