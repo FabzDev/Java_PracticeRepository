@@ -49,7 +49,13 @@ public class MedicoController {
 	@Transactional
 	public void eliminarMedico(@PathVariable Long id) {
 		Medico medico = medicoRepository.getReferenceById(id);
-		medicoRepository.delete(medico);
+		medico.desactivarMedico();
 	}
+	
+	
+//		ELIMINAR DE BASE DE DATOS
+//		Medico medico = medicoRepository.getReferenceById(id);
+//		medicoRepository.delete(medico);
+//	}
 	
 }
