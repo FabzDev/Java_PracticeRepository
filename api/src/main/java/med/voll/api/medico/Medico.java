@@ -27,12 +27,14 @@ public class Medico {
 	private Long id;
 	private String nombre;
 	private String email;
+	private String telefono;
 	private String documento;
+	private boolean activo;
 	@Enumerated(EnumType.STRING)
 	private Especialidad especialidad;
 	@Embedded
 	private Direccion direccion;
-	private boolean activo;
+	
 	
 	public Medico() {
 	}
@@ -69,6 +71,14 @@ public class Medico {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
 	}
 
 	public String getDocumento() {
