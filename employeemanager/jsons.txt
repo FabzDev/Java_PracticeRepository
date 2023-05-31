@@ -1,0 +1,35 @@
+{
+	"email":"fabio@devescobar.io",
+	"imageUrl": "http://bootdey.com/img/content/avatar/avatar1.png",
+	"jobtTitle": "Java",
+	"name": "Fabio Escobar",
+	"phone": "4570090332"
+}
+{
+	"email":"yulieth@devescobar.io",
+	"imageUrl": "http://bootdey.com/img/content/avatar/avatar2.png",
+	"jobtTitle": "JavaScript",
+	"name": "Yulieth Horta",
+	"phone": "4570090333"
+}
+{
+	"email":"alejandro@devescobar.io",
+	"imageUrl": "http://bootdey.com/img/content/avatar/avatar3.png",
+	"jobtTitle": "Phyton",
+	"name": "Alejandro Escobar",
+	"phone": "4570090334"
+}
+{
+	"email":"laura@devescobar.io",
+	"imageUrl": "http://bootdey.com/img/content/avatar/avatar4.png",
+	"jobtTitle": "Figma",
+	"name": "Laura Escobar",
+	"phone": "4570090335"
+}
+{
+	"email":"giovanni@devescobar.io",
+	"imageUrl": "http://bootdey.com/img/content/avatar/avatar5.png",
+	"jobtTitle": "Flutter",
+	"name": "Giovanni Escobar",
+	"phone": "4570090336"
+}

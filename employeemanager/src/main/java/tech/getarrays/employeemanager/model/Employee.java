@@ -29,6 +29,8 @@ public class Employee implements Serializable{
 	private String employeeCode;
 	
 	
+	public Employee() {}
+	
 	public Employee(Long id, String name, String email, String jobTitle, String phone, String imageUrl,
 			String employeeCode) {
 		this.id = id;
