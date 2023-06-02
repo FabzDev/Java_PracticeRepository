@@ -49,7 +49,7 @@ public class MedicoController {
 	
 	
 	@GetMapping
-	public ResponseEntity<Page<DatosListadoMedico>> listadoMedico(@PageableDefault(sort = "nombre", size = 3) Pageable pag) {
+	public ResponseEntity<Page<DatosListadoMedico>> listadoMedico(@PageableDefault(sort = "nombre", size = 8) Pageable pag) {
 		return ResponseEntity.ok(medicoRepository.findByActivoTrue(pag).map(medico -> new DatosListadoMedico(medico)));
 	}
 
@@ -62,7 +62,7 @@ public class MedicoController {
 				medico.getEmail(), medico.getTelefono(), medico.getEspecialidad(), medico.getDocumento(),
 				new DatosDireccion(medico.getDireccion().getCalle(), medico.getDireccion().getDistrito(),
 						medico.getDireccion().getBarrio(), medico.getDireccion().getCiudad(),
-						medico.getDireccion().getNumero(), medico.getDireccion().getComplemento())));
+						medico.getDireccion().getNumero(), medico.getDireccion().getComplemento()), medico.isActivo()));
 	}
 
 	@DeleteMapping("/{id}")
