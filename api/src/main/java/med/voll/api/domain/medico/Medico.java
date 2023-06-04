@@ -16,11 +16,9 @@ import med.voll.api.domain.direccion.Direccion;
 
 @Table(name = "medicos")
 @Entity(name = "Medico")
-@Getter
-@NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Medico {
+
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,10 +32,7 @@ public class Medico {
 	private Especialidad especialidad;
 	@Embedded
 	private Direccion direccion;
-	
-	
-	public Medico() {
-	}
+
 	
 	public Medico(DatosMedicoRegistro datosMedicoRegistro) {
 		this.activo = true;
@@ -104,7 +99,7 @@ public class Medico {
 	public void setDireccion(Direccion direccion) {
 		this.direccion = direccion;
 	}
-	
+
 
 	public boolean isActivo() {
 		return activo;
