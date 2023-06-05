@@ -17,6 +17,7 @@ import med.voll.api.domain.direccion.Direccion;
 @Table(name = "medicos")
 @Entity(name = "Medico")
 @EqualsAndHashCode(of = "id")
+@NoArgsConstructor
 public class Medico {
 
 
