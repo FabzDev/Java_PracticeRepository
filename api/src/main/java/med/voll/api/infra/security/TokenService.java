@@ -34,21 +34,23 @@ public class TokenService {
     }
     public String getSubject(String token) {
         DecodedJWT verifier = null;
+        String subject = null;
         try {
             Algorithm algorithm = Algorithm.HMAC256(apiSecret);
             verifier = JWT.require(algorithm)
                     .withIssuer("vollmed")
                     .build()
                     .verify(token);
-            verifier.getSubject();
+            subject = verifier.getSubject();
 
         } catch (JWTVerificationException exception) {
             System.out.println("Error: " + exception.toString());
         }
-        if (verifier.getSubject() == null) {
+
+        if (subject == null) {
             throw new RuntimeException("Verifier invalido");
         }
-        return verifier.getSubject();
+        return subject;
     }
 
     private Instant generarFechaExpiracion(){
