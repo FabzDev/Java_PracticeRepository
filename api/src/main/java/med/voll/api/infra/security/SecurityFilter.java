@@ -4,7 +4,12 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import med.voll.api.domain.usuarios.Usuario;
+import med.voll.api.domain.usuarios.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -16,16 +21,21 @@ public class SecurityFilter extends OncePerRequestFilter {
     @Autowired
     private TokenService tokenService;
 
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        var token = request.getHeader("Authorization");
-        if(token == null || token.equals(""))
-            throw new RuntimeException("El token debe tener contenido");
-
-        token = token.replace("Bearer ", "");
-        System.out.println(token);
-        System.out.println(tokenService.getSubject(token));
+        var headerToken = request.getHeader("Authorization");
+        if(headerToken != null){
+            var token = headerToken.replace("Bearer ", "");
+            var nombreUsuario = tokenService.getSubject(token);
+            if (nombreUsuario != null) {
+                Usuario usuarioEncontrado = (Usuario) usuarioRepository.findUserByLogin(nombreUsuario);
+                Authentication authToken = new UsernamePasswordAuthenticationToken(usuarioEncontrado, null, usuarioEncontrado.getAuthorities());
+                SecurityContextHolder.getContext().setAuthentication(authToken);
+            }
+        }
         filterChain.doFilter(request, response);
-
     }
 }
