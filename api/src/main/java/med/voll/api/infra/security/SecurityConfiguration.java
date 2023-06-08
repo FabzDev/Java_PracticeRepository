@@ -26,12 +26,9 @@ public class SecurityConfiguration {
         return httpSecurity.csrf().disable().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().authorizeHttpRequests()
-                .requestMatchers(POST, "/login")
-                .permitAll()
-                .anyRequest()
-                .authenticated()
-                .and()
-                .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
+                .requestMatchers(POST, "/login").permitAll()
+                .anyRequest().authenticated()
+                .and().addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
 
