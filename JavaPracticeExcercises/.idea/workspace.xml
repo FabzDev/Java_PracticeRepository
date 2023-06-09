@@ -6,8 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="b16289d5-4242-47f3-853a-2a73b26f1974" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/practice/excercises/chapther1/Array.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/practice/excercises/moshDesignPatterns/Array.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/practice/excercises/chapther1/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/practice/excercises/moshDesignPatterns/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaPracticeExcercises/com/practice/excercises/moshDesignPatterns/LinkedList.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaPracticeExcercises/com/practice/excercises/moshDesignPatterns/LinkedList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaPracticeExcercises/com/practice/excercises/moshDesignPatterns/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaPracticeExcercises/com/practice/excercises/moshDesignPatterns/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaPracticeExcercises/com/practice/excercises/moshDesignPatterns/Node.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/practice/excercises/moshDesignPatterns/LinkedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/practice/excercises/moshDesignPatterns/LinkedList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/practice/excercises/moshDesignPatterns/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/practice/excercises/moshDesignPatterns/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/practice/excercises/moshDesignPatterns/Node.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
