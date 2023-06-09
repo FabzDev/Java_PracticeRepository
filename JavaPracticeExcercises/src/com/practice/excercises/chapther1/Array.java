@@ -48,13 +48,12 @@ public class Array {
 
 
     public int indexOf(int value) {
-        int count = 0;
-        for (int item : array) {
+        int count = 0; //O(1)
+        for (int item : array) { // O(n)
             if (item == value)
-                return count;
-            count++;
+                return count;   //O(1)
+            count++;    //O(1)
         }
-
-        return count;
+        return -1;  //O(1)
     }
 }
