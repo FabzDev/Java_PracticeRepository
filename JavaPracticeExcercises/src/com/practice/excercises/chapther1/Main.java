@@ -10,7 +10,7 @@ public class Main {
         array1.insert(3);
         array1.insert(4);
         array1.insert(5);
-        array1.removeAt(3);
-        array1.print();
+//        array1.removeAt(3);
+        System.out.println(array1.indexOf(4));
     }
 }

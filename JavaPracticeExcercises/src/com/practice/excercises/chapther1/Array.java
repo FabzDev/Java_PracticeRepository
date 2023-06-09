@@ -35,8 +35,8 @@ public class Array {
     }
 
     public void removeAt(int at) { // array.length 5, pointer 5, at 2
-        for (int i = at; i < pointer-1; i++) {
-            array[i] = array[i+1];
+        for (int i = at; i < pointer - 1; i++) {
+            array[i] = array[i + 1];
         }
         pointer--;
         int[] tempArray = new int[pointer];
@@ -44,5 +44,17 @@ public class Array {
             tempArray[i] = array[i];
         }
         array = tempArray;
+    }
+
+
+    public int indexOf(int value) {
+        int count = 0;
+        for (int item : array) {
+            if (item == value)
+                return count;
+            count++;
+        }
+
+        return count;
     }
 }
