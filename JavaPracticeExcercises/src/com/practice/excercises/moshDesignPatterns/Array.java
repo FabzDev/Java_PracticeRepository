@@ -1,4 +1,4 @@
-package com.practice.excercises.chapther1;
+package com.practice.excercises.moshDesignPatterns;
 
 public class Array {
 

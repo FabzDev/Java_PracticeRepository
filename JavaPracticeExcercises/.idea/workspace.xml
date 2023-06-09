@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="b16289d5-4242-47f3-853a-2a73b26f1974" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/practice/excercises/chapther1/Array.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/practice/excercises/chapther1/Array.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/practice/excercises/chapther1/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/practice/excercises/chapther1/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/practice/excercises/chapther1/Array.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/practice/excercises/moshDesignPatterns/Array.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/practice/excercises/chapther1/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/practice/excercises/moshDesignPatterns/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +41,7 @@
       <recent name="C:\Users\fabio\OneDrive\Documentos\Github_Repositories\Java_PracticeRepository\JavaPracticeExcercises\src" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.com.practice.excercises.moshDesignPatterns.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.practice.excercises.chapther1.Main" />
       <module name="JavaPracticeExcercises" />
@@ -55,8 +55,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="com.practice.excercises.moshDesignPatterns.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.practice.excercises.moshDesignPatterns.Main" />
+      <module name="JavaPracticeExcercises" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.practice.excercises.moshDesignPatterns.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.com.practice.excercises.moshDesignPatterns.Main" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
