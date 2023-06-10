@@ -68,13 +68,29 @@ public class LinkedList {
         Node temp = first;
         int count = 0;
         while (temp != null) {
-            if (temp.value == number) {
+            if (temp.value == number)
                 return count;
-            }
             temp = temp.next;
             count++;
         }
         return -1;
+    }
+    
+    public void reverse() {
+        Node current = first;
+        Node first2 = first;
+        first = last;
+
+        while (last != first2) {
+
+            while (current.next != last) {
+                current = current.next;
+            }
+            last.next = current;
+            current.next = null;
+            last = current;
+            current = first2;
+        }
     }
 }
 
@@ -85,3 +101,17 @@ public class LinkedList {
 //        first.next = null;
 //        first = item;
 //        }
+// AQUI
+//        Node current = first;
+//        Node first2 = first;
+//        first = last;
+//
+//        while (last != first2) {
+//
+//            while (current.next != last) {
+//                current = current.next;
+//            }
+//            last.next = current;
+//            current.next = null;
+//            last = current;
+//            current = first2;

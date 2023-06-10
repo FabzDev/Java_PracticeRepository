@@ -11,13 +11,15 @@ public class Main {
         linkedList.addFirst(8);
         linkedList.addFirst(4);
         linkedList.addLast(7);
+        linkedList.addLast(13);
+        linkedList.addLast(20);
         linkedList.deleteFirst();
         linkedList.deleteLast();
         linkedList.print();
         System.out.println(linkedList.contains(2));
         System.out.println(linkedList.indexOf(9));
-
-
+        linkedList.reverse();
+        linkedList.print();
 
     }
 }
