@@ -1,6 +1,7 @@
 package com.practice.excercises.moshDesignPatterns;
 
 public class LinkedList {
+
     private class Node {
         int value;
         Node next;
@@ -32,7 +33,7 @@ public class LinkedList {
         }
     }
 
-    public void addLast(int  number) {
+    public void addLast(int number) {
         Node node = new Node(number);
         last.next = node;
         last = node;
@@ -75,8 +76,22 @@ public class LinkedList {
         }
         return -1;
     }
-    
-    public void reverse() {
+
+    public int reverseK(int k) {
+        Node current = first;
+        Node current2 = first;
+        for (int i = 0; i < k - 1; i++) {
+            current2 = current2.next;
+        }
+
+        while (current2.next != null) {
+            current = current.next;
+            current2 = current2.next;
+        }
+        return current.value;
+    }
+
+    public void reverseArray() {
         Node current = first;
         Node first2 = first;
         first = last;
@@ -115,3 +130,14 @@ public class LinkedList {
 //            current.next = null;
 //            last = current;
 //            current = first2;
+
+// TEORIA
+// [10 -> 20 -> 30 -> 40 -> 50]
+//   *                      *
+//  N = 1  (4)
+//  N = 2  (3)
+//  N = 3  (2)
+//  N = 4  (1)
+//  N = 5  (0)
+//
+//

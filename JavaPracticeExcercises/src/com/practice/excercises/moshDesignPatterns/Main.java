@@ -18,7 +18,8 @@ public class Main {
         linkedList.print();
         System.out.println(linkedList.contains(2));
         System.out.println(linkedList.indexOf(9));
-        linkedList.reverse();
+        linkedList.reverseArray();
+        System.out.println(linkedList.reverseK(3));
         linkedList.print();
 
     }
