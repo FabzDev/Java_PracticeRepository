@@ -6,10 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b16289d5-4242-47f3-853a-2a73b26f1974" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaPracticeExcercises/com/practice/excercises/moshDesignPatterns/LinkedList.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaPracticeExcercises/com/practice/excercises/moshDesignPatterns/LinkedList.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JavaPracticeExcercises/com/practice/excercises/moshDesignPatterns/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JavaPracticeExcercises/com/practice/excercises/moshDesignPatterns/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/practice/excercises/moshDesignPatterns/LinkedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/practice/excercises/moshDesignPatterns/LinkedList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/practice/excercises/moshDesignPatterns/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/practice/excercises/moshDesignPatterns/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,13 +27,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/fabio/OneDrive/Documentos/Github_Repositories/Java_PracticeRepository/tasks"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\fabio\OneDrive\Documentos\Github_Repositories\Java_PracticeRepository\JavaPracticeExcercises\src" />
