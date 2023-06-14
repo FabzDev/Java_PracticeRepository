@@ -24,4 +24,15 @@ public class ProductoDAO {
         String jpql = "SELECT P FROM Producto AS P";
         return entityManager.createQuery(jpql, Producto.class).getResultList();
     }
+
+    public List<Producto> findByName(String nombre){
+        String jpql = "SELECT P FROM Producto AS P WHERE P.nombre=:nombre";
+        return entityManager.createQuery(jpql, Producto.class).setParameter("nombre", nombre).getResultList();
+    }
+
+    public List<Producto> findByCategoria(String categoriaNombre){
+        String jpql = "SELECT P FROM Producto AS P WHERE P.categoria.nombre=:categoriaNombre";
+        return entityManager.createQuery(jpql, Producto.class).setParameter("categoriaNombre", categoriaNombre).getResultList();
+    }
+
 }

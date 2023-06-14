@@ -21,6 +21,12 @@ public class RegistroProducto {
         List<Producto> productos = productoDAO.findAll();
         productos.forEach(prod -> System.out.println(prod.getNombre()));
 
+        List<Producto> productosNombre = productoDAO.findByName("Xiaomi Redmi");
+        productos.forEach(prod -> System.out.println(prod.getNombre()));
+
+        List<Producto> productosCategoria = productoDAO.findByCategoria("CELULARES");
+        productos.forEach(prod -> System.out.println(prod.getDescripcion()));
+
     }
 
     private static void registrarProductoBase() {
