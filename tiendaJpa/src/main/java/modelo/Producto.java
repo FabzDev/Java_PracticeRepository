@@ -3,6 +3,7 @@ package modelo;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name="productos")
@@ -13,9 +14,16 @@ public class Producto {
     private String nombre;
     private String descripcion;
     private BigDecimal precio;
-    private LocalDate date;
+    private LocalDate fecha;
     @ManyToOne
     private Categoria categoria;
+
+    @ManyToMany
+    private List<Pedido> pedidos;
+
+    @ManyToMany
+    private List<ItemsPedido> itemPedido;
+
 
     public Producto() {
     }
@@ -24,7 +32,7 @@ public class Producto {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
-        this.date = LocalDate.now();
+        this.fecha = LocalDate.now();
         this.categoria = categoria;
     }
 
@@ -60,8 +68,8 @@ public class Producto {
         this.precio = precio;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getFecha() {
+        return fecha;
     }
 
     public Categoria getCategoria() {

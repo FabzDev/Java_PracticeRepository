@@ -3,6 +3,7 @@ package DAO;
 import modelo.Producto;
 
 import javax.persistence.EntityManager;
+import java.math.BigDecimal;
 import java.util.List;
 
 public class ProductoDAO {
@@ -35,4 +36,8 @@ public class ProductoDAO {
         return entityManager.createQuery(jpql, Producto.class).setParameter("categoriaNombre", categoriaNombre).getResultList();
     }
 
+    public BigDecimal findPriceByProductName(String productName) {
+        String jpql = "SELECT P.precio FROM Producto AS P WHERE P.nombre=:productName";
+        return entityManager.createQuery(jpql, BigDecimal.class).setParameter("productName", productName).getSingleResult();
+    }
 }
