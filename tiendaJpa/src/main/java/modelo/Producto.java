@@ -18,10 +18,7 @@ public class Producto {
     @ManyToOne
     private Categoria categoria;
 
-    @ManyToMany
-    private List<Pedido> pedidos;
-
-    @ManyToMany
+    @OneToMany
     private List<ItemsPedido> itemPedido;
 
 

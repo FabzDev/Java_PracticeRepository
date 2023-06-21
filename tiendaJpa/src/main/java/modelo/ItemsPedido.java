@@ -2,6 +2,7 @@ package modelo;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Entity
 @Table(name="items_pedido")
@@ -10,7 +11,8 @@ public class ItemsPedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private int cantidad;
-    private BigDecimal precioUnitario;
+    private LocalDate fecha;
+    private BigDecimal valorUnitario;
     @ManyToOne
     private Producto producto;
     @ManyToOne
@@ -37,12 +39,12 @@ public class ItemsPedido {
         this.cantidad = cantidad;
     }
 
-    public BigDecimal getPrecioUnitario() {
-        return precioUnitario;
+    public BigDecimal getValorUnitario() {
+        return valorUnitario;
     }
 
-    public void setPrecioUnitario(BigDecimal precioUnitario) {
-        this.precioUnitario = precioUnitario;
+    public void setValorUnitario(BigDecimal valorUnitario) {
+        this.valorUnitario = valorUnitario;
     }
 
     public Producto getProducto() {
