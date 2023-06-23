@@ -24,13 +24,13 @@ public class Pedido {
     public Pedido() {
     }
 
+    public Pedido(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
     public void agregarItems(ItemsPedido item){
         item.setPedido(this);
         this.itemsPedido.add(item);
-    }
-
-    public Pedido(Cliente cliente) {
-        this.cliente = cliente;
     }
 
     public Long getId() {
