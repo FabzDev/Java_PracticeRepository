@@ -3,6 +3,7 @@ package modelo;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,10 +18,15 @@ public class Pedido {
     @ManyToOne
     private Cliente cliente;
 
-    @OneToMany
-    private List<ItemsPedido> itemsPedido;
+    @OneToMany(mappedBy = "pedido")
+    private List<ItemsPedido> itemsPedido = new ArrayList<>();
 
     public Pedido() {
+    }
+
+    public void agregarItems(ItemsPedido item){
+        item.setPedido(this);
+        this.itemsPedido.add(item);
     }
 
     public Pedido(Cliente cliente) {
