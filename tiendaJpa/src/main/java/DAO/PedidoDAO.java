@@ -26,4 +26,11 @@ public class PedidoDAO {
         return entityManager.createQuery(jpql, Pedido.class).getResultList();
     }
 
+    public Pedido findPedidoByCliente(String nombre){
+        String jpql = "SELECT P FROM Pedido AS P WHERE P.cliente.nombre=:nombre";
+        return entityManager.createQuery(jpql, Pedido.class).setParameter("nombre", nombre).getSingleResult();
+//        return entityManager.find(Pedido.class, id);
+    }
+
+
 }

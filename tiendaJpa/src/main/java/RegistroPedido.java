@@ -15,7 +15,7 @@ public class RegistroPedido {
         EntityManager em = JPAUtils.getEntityManager();
 
         ProductoDAO productoDAO = new ProductoDAO(em);
-        CategoriaDAO categoriaDAO = new CategoriaDAO(em);
+//        CategoriaDAO categoriaDAO = new CategoriaDAO(em);
         PedidoDAO pedidoDAO = new PedidoDAO(em);
         ClienteDAO clienteDAO = new ClienteDAO(em);
 
@@ -25,9 +25,11 @@ public class RegistroPedido {
         Cliente cliente = new Cliente("Fabio Escobar", "1140829342");
         Pedido pedido = new Pedido(cliente);
         pedido.agregarItems(new ItemsPedido(5, producto, pedido));
+        pedido.agregarItems(new ItemsPedido(8, producto, pedido));
 
         pedidoDAO.guardar(pedido);
         clienteDAO.guardar(cliente);
+        System.out.println(pedidoDAO.findPedidoByCliente("Fabio Escobar").getCliente().getNombre());
 
         em.getTransaction().commit();
         em.close();

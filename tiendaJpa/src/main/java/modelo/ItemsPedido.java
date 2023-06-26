@@ -9,18 +9,19 @@ public class ItemsPedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private int cantidad;
+    private Integer cantidad;
     private BigDecimal precioUnitario;
-
     @ManyToOne
     private Producto producto;
     @ManyToOne
     private Pedido pedido;
 
+    //**CONSTRUCTOR VACIO**
     public ItemsPedido() {
     }
 
-    public ItemsPedido(int cantidad, Producto producto, Pedido pedido) {
+    //**CONSTRUCTOR**
+    public ItemsPedido(Integer cantidad, Producto producto, Pedido pedido) {
         this.cantidad = cantidad;
         this.producto = producto;
         this.pedido = pedido;
@@ -61,5 +62,9 @@ public class ItemsPedido {
 
     public void setPedido(Pedido pedido) {
         this.pedido = pedido;
+    }
+
+    public BigDecimal getPrecioTotal() {
+       return this.precioUnitario.multiply(new BigDecimal(this.cantidad));
     }
 }
