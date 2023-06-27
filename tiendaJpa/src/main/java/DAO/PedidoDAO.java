@@ -13,7 +13,6 @@ public class PedidoDAO {
     }
 
     public void guardar(Pedido pedido){
-
         entityManager.persist(pedido);
     }
 

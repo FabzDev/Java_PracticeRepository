@@ -29,7 +29,8 @@ public class Pedido {
     }
 
     public void agregarItems(ItemsPedido itemsPedido){
-//        itemsPedido.setPedido(this);
+        itemsPedido.getProducto().setCantidadVendida( itemsPedido.getProducto().getCantidadVendida() + 1);
+        itemsPedido.getProducto().setFechaUltimaVenta(LocalDate.now());
         this.itemsPedido.add(itemsPedido);
         this.valorTotal = this.valorTotal.add(itemsPedido.getPrecioTotal());
     }

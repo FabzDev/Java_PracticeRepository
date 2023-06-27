@@ -14,6 +14,9 @@ public class Producto {
     private String descripcion;
     private BigDecimal precio;
     private LocalDate fechaRegistro;
+    private Integer cantidadVendida = 0;
+
+    public LocalDate fechaUltimaVenta;
 
     @ManyToOne
     private Categoria categoria;
@@ -69,4 +72,19 @@ public class Producto {
         return categoria;
     }
 
+    public Integer getCantidadVendida() {
+        return cantidadVendida;
+    }
+
+        public void setCantidadVendida(Integer cantidadVendida) {
+        this.cantidadVendida = cantidadVendida;
+    }
+
+    public LocalDate getFechaUltimaVenta() {
+        return fechaUltimaVenta;
+    }
+
+    public void setFechaUltimaVenta(LocalDate fechaUltimaVenta) {
+        this.fechaUltimaVenta = fechaUltimaVenta;
+    }
 }

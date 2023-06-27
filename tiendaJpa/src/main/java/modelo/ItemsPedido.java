@@ -11,6 +11,7 @@ public class ItemsPedido {
     private Long id;
     private Integer cantidad;
     private BigDecimal precioUnitario;
+
     @ManyToOne
     private Producto producto;
     @ManyToOne
