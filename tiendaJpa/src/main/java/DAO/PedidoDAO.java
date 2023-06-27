@@ -32,5 +32,11 @@ public class PedidoDAO {
 //        return entityManager.find(Pedido.class, id);
     }
 
+    public Double findPedidoExpensive(){
+        String jpql = "SELECT AVG(P.valorTotal) FROM Pedido P";
+        return entityManager.createQuery(jpql, Double.class).getSingleResult();
+//        return entityManager.find(Pedido.class, id);
+    }
+
 
 }

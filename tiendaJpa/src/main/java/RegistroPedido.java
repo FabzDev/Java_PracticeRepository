@@ -10,7 +10,9 @@ import java.math.BigDecimal;
 
 public class RegistroPedido {
     public static void main(String[] args) {
-        registrarProductoBase();
+        registrarProductoBase("Xiaomi Redmi", "Bandas abiertas", 800);
+        registrarProductoBase("Iphone 13", "Reacondicionado", 1500);
+        registrarProductoBase("Samsung S23", "Original de fábrica", 1400);
 
         EntityManager em = JPAUtils.getEntityManager();
 
@@ -21,24 +23,29 @@ public class RegistroPedido {
 
         em.getTransaction().begin();
 
-        Producto producto = productoDAO.findProductById(Long.valueOf(1));
+        Producto producto1 = productoDAO.findProductById(Long.valueOf(1));
+        Producto producto2 = productoDAO.findProductById(Long.valueOf(2));
+        Producto producto3 = productoDAO.findProductById(Long.valueOf(3));
         Cliente cliente = new Cliente("Fabio Escobar", "1140829342");
         Pedido pedido = new Pedido(cliente);
-        pedido.agregarItems(new ItemsPedido(5, producto, pedido));
-        pedido.agregarItems(new ItemsPedido(8, producto, pedido));
+        Pedido pedido2 = new Pedido(cliente);
+        pedido.agregarItems(new ItemsPedido(5, producto1, pedido));
+        pedido.agregarItems(new ItemsPedido(8, producto2, pedido));
+        pedido2.agregarItems(new ItemsPedido(4, producto3, pedido2));
 
         pedidoDAO.guardar(pedido);
+        pedidoDAO.guardar(pedido2);
         clienteDAO.guardar(cliente);
-        System.out.println(pedidoDAO.findPedidoByCliente("Fabio Escobar").getCliente().getNombre());
+        System.out.println(pedidoDAO.findPedidoExpensive() + "------------------------------------------");
 
         em.getTransaction().commit();
         em.close();
 
     }
 
-    private static void registrarProductoBase() {
+    private static void registrarProductoBase(String prod, String desc, int price) {
         Categoria categoria1 = new Categoria("CELULARES");
-        Producto producto1 = new Producto("Xiaomi Redmi", "Bandas abiertas", new BigDecimal(800), categoria1);
+        Producto producto1 = new Producto(prod, desc, new BigDecimal(price), categoria1);
 
         EntityManager em = JPAUtils.getEntityManager();
         ProductoDAO productoDAO = new ProductoDAO(em);
