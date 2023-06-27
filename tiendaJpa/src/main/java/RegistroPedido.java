@@ -7,6 +7,7 @@ import utils.JPAUtils;
 
 import javax.persistence.EntityManager;
 import java.math.BigDecimal;
+import java.util.List;
 
 public class RegistroPedido {
     public static void main(String[] args) {
@@ -29,14 +30,24 @@ public class RegistroPedido {
         Cliente cliente = new Cliente("Fabio Escobar", "1140829342");
         Pedido pedido = new Pedido(cliente);
         Pedido pedido2 = new Pedido(cliente);
+        Pedido pedido3 = new Pedido(cliente);
         pedido.agregarItems(new ItemsPedido(5, producto1, pedido));
         pedido.agregarItems(new ItemsPedido(8, producto2, pedido));
         pedido2.agregarItems(new ItemsPedido(4, producto3, pedido2));
+        pedido3.agregarItems(new ItemsPedido(10, producto1, pedido3));
 
         pedidoDAO.guardar(pedido);
         pedidoDAO.guardar(pedido2);
+        pedidoDAO.guardar(pedido3);
         clienteDAO.guardar(cliente);
-        System.out.println(pedidoDAO.findPedidoExpensive() + "------------------------------------------");
+//        System.out.println(pedidoDAO.findPedidoExpensive() + "<------------------------------------------");
+        List<Object[]> relatorio = pedidoDAO.relatorioVentas();
+
+        for (Object[] obj : relatorio) {
+            System.out.println(obj[0]);
+            System.out.println(obj[1]);
+            System.out.println(obj[2]);
+        }
 
         em.getTransaction().commit();
         em.close();

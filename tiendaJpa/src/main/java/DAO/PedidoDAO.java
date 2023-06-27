@@ -37,5 +37,17 @@ public class PedidoDAO {
 //        return entityManager.find(Pedido.class, id);
     }
 
+    public List<Object[]> relatorioVentas(){
+        String jpql = "SELECT p.nombre," +
+                "SUM(ip.cantidad)," +
+                "MAX(pe.fecha) " +
+                "FROM Pedido pe " +
+                "JOIN pe.itemsPedido ip " +
+                "JOIN ip.producto p " +
+                "GROUP BY p.nombre " +
+                "ORDER BY SUM(ip.cantidad) DESC";
+        return entityManager.createQuery(jpql, Object[].class).getResultList();
+    }
+
 
 }
