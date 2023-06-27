@@ -2,6 +2,7 @@ import DAO.CategoriaDAO;
 import DAO.ClienteDAO;
 import DAO.PedidoDAO;
 import DAO.ProductoDAO;
+import VO.RelatorioDeVentas;
 import modelo.*;
 import utils.JPAUtils;
 
@@ -41,13 +42,16 @@ public class RegistroPedido {
         pedidoDAO.guardar(pedido3);
         clienteDAO.guardar(cliente);
 //        System.out.println(pedidoDAO.findPedidoExpensive() + "<------------------------------------------");
-        List<Object[]> relatorio = pedidoDAO.relatorioVentas();
+//        List<Object[]> relatorio = pedidoDAO.relatorioVentas();
 
-        for (Object[] obj : relatorio) {
-            System.out.println(obj[0]);
-            System.out.println(obj[1]);
-            System.out.println(obj[2]);
-        }
+        List<RelatorioDeVentas> relatorio = pedidoDAO.relatorioVentasVO();
+        relatorio.forEach(System.out::println);
+
+//        for (Object[] obj : relatorio) {
+//            System.out.println(obj[0]);
+//            System.out.println(obj[1]);
+//            System.out.println(obj[2]);
+//        }
 
         em.getTransaction().commit();
         em.close();

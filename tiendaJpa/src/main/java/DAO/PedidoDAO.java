@@ -1,5 +1,6 @@
 package DAO;
 
+import VO.RelatorioDeVentas;
 import modelo.Pedido;
 
 import javax.persistence.EntityManager;
@@ -38,15 +39,23 @@ public class PedidoDAO {
     }
 
     public List<Object[]> relatorioVentas(){
-        String jpql = "SELECT p.nombre," +
-                "SUM(ip.cantidad)," +
-                "MAX(pe.fecha) " +
+        String jpql = "SELECT p.nombre, SUM(ip.cantidad), MAX(pe.fecha) " +
                 "FROM Pedido pe " +
                 "JOIN pe.itemsPedido ip " +
                 "JOIN ip.producto p " +
                 "GROUP BY p.nombre " +
                 "ORDER BY SUM(ip.cantidad) DESC";
         return entityManager.createQuery(jpql, Object[].class).getResultList();
+    }
+
+    public List<RelatorioDeVentas> relatorioVentasVO(){
+        String jpql = "SELECT new VO.RelatorioDeVentas(p.nombre, SUM(ip.cantidad), MAX(pe.fecha)) " +
+                "FROM Pedido pe " +
+                "JOIN pe.itemsPedido ip " +
+                "JOIN ip.producto p " +
+                "GROUP BY p.nombre " +
+                "ORDER BY SUM(ip.cantidad) DESC";
+        return entityManager.createQuery(jpql, RelatorioDeVentas.class).getResultList();
     }
 
 
