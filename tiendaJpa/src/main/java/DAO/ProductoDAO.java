@@ -37,7 +37,7 @@ public class ProductoDAO {
     }
 
     public BigDecimal findPriceByProductName(String productName) {
-        String jpql = "SELECT P.precio FROM Producto AS P WHERE P.nombre=:productName";
-        return entityManager.createQuery(jpql, BigDecimal.class).setParameter("productName", productName).getSingleResult();
+//        String jpql = "SELECT P.precio FROM Producto AS P WHERE P.nombre=:productName";
+        return entityManager.createNamedQuery("findByPrice", BigDecimal.class).setParameter("productName", productName).getSingleResult();
     }
 }

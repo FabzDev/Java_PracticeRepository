@@ -2,13 +2,11 @@ import DAO.CategoriaDAO;
 import DAO.ClienteDAO;
 import DAO.PedidoDAO;
 import DAO.ProductoDAO;
-import VO.RelatorioDeVentas;
 import modelo.*;
 import utils.JPAUtils;
 
 import javax.persistence.EntityManager;
 import java.math.BigDecimal;
-import java.util.List;
 
 public class RegistroPedido {
     public static void main(String[] args) {
@@ -41,18 +39,13 @@ public class RegistroPedido {
         pedidoDAO.guardar(pedido2);
         pedidoDAO.guardar(pedido3);
         clienteDAO.guardar(cliente);
-//        System.out.println(pedidoDAO.findPedidoExpensive() + "<------------------------------------------");
-//        List<Object[]> relatorio = pedidoDAO.relatorioVentas();
 
-        List<RelatorioDeVentas> relatorio = pedidoDAO.relatorioVentasVO();
-        relatorio.forEach(System.out::println);
 
-//        for (Object[] obj : relatorio) {
-//            System.out.println(obj[0]);
-//            System.out.println(obj[1]);
-//            System.out.println(obj[2]);
-//        }
+//        List<RelatorioDeVentas> relatorio = pedidoDAO.relatorioVentasVO();
+//        relatorio.forEach(System.out::println);
 
+        BigDecimal result = productoDAO.findPriceByProductName("Xiaomi Redmi");
+        System.out.println(result);
         em.getTransaction().commit();
         em.close();
 
