@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="peluqueria_canina:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/peluqueria_canina_jar</output-path>
+    <root id="archive" name="peluqueria_canina.jar">
+      <element id="module-output" name="peluqueria_canina" />
+    </root>
+  </artifact>
+</component>
