@@ -3,8 +3,11 @@ package igu.practica.Ejercicio4;
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import javax.swing.text.StyleContext;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Locale;
 
 public class programa extends JFrame {
@@ -26,6 +29,7 @@ public class programa extends JFrame {
     JComboBox lista;
     private JButton btnInsertar;
     private JLabel lblPersona;
+    private JScrollBar barra;
 
     public programa() {
         llenarModelo();
@@ -36,6 +40,20 @@ public class programa extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(3);
         setVisible(true);
+        btnInsertar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Persona p = (Persona) lista.getSelectedItem();
+                String nombre = p.getNombre();
+                String apellido = p.getApellido();
+                String email = p.getEmail();
+                String telefono = p.getTelefono();
+                String direccion = p.getDireccion();
+                String[] personaListString = {nombre, apellido, email, telefono, direccion};
+                modeloTabla.addRow(personaListString);
+                tabla.setModel(modeloTabla);
+            }
+        });
     }
 
     public void iniciarComponentes() {
@@ -122,10 +140,6 @@ public class programa extends JFrame {
         Font txtDireccionFont = this.$$$getFont$$$("Inter", Font.PLAIN, 14, txtDireccion.getFont());
         if (txtDireccionFont != null) txtDireccion.setFont(txtDireccionFont);
         panel.add(txtDireccion, new com.intellij.uiDesigner.core.GridConstraints(13, 0, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, 30), null, 0, false));
-        Font tablaFont = this.$$$getFont$$$("Inter", Font.PLAIN, 14, tabla.getFont());
-        if (tablaFont != null) tabla.setFont(tablaFont);
-        tabla.setShowHorizontalLines(true);
-        panel.add(tabla, new com.intellij.uiDesigner.core.GridConstraints(4, 0, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(300, 200), null, 0, false));
         final com.intellij.uiDesigner.core.Spacer spacer1 = new com.intellij.uiDesigner.core.Spacer();
         panel.add(spacer1, new com.intellij.uiDesigner.core.GridConstraints(5, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, 1, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(-1, 20), null, 0, false));
         lblPersona = new JLabel();
@@ -148,6 +162,13 @@ public class programa extends JFrame {
         panel.add(spacer3, new com.intellij.uiDesigner.core.GridConstraints(1, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, 1, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(-1, 5), null, 0, false));
         final com.intellij.uiDesigner.core.Spacer spacer4 = new com.intellij.uiDesigner.core.Spacer();
         panel.add(spacer4, new com.intellij.uiDesigner.core.GridConstraints(7, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, 1, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(-1, 5), null, 0, false));
+        final JScrollPane scrollPane1 = new JScrollPane();
+        panel.add(scrollPane1, new com.intellij.uiDesigner.core.GridConstraints(4, 0, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        tabla.setFillsViewportHeight(false);
+        Font tablaFont = this.$$$getFont$$$("Inter", Font.PLAIN, 14, tabla.getFont());
+        if (tablaFont != null) tabla.setFont(tablaFont);
+        tabla.setShowHorizontalLines(true);
+        scrollPane1.setViewportView(tabla);
     }
 
     /**
@@ -185,6 +206,8 @@ public class programa extends JFrame {
         lista.setModel(modelo);
         tabla = new JTable();
         tabla.setModel(modeloTabla);
+        barra = new JScrollBar();
+        tabla.add(barra);
 
     }
 }
