@@ -114,7 +114,7 @@
           <font name="Inter" size="14" style="0"/>
         </properties>
       </component>
-      <component id="c4cca" class="javax.swing.JTable" binding="tabla">
+      <component id="c4cca" class="javax.swing.JTable" binding="tabla" custom-create="true">
         <constraints>
           <grid row="4" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <preferred-size width="300" height="200"/>
@@ -122,6 +122,7 @@
         </constraints>
         <properties>
           <font name="Inter" size="14" style="0"/>
+          <showHorizontalLines value="true"/>
         </properties>
       </component>
       <vspacer id="c5b39">
