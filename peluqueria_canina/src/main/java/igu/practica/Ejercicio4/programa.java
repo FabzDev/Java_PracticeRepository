@@ -1,7 +1,10 @@
 package igu.practica.Ejercicio4;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.plaf.FontUIResource;
+import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.text.StyleContext;
@@ -30,6 +33,7 @@ public class programa extends JFrame {
     private JButton btnInsertar;
     private JLabel lblPersona;
     private JScrollBar barra;
+    private DefaultTableColumnModel modeloColumnasTabla;
 
     public programa() {
         llenarModelo();
@@ -202,12 +206,29 @@ public class programa extends JFrame {
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
-        lista = new JComboBox();
-        lista.setModel(modelo);
-        tabla = new JTable();
-        tabla.setModel(modeloTabla);
-        barra = new JScrollBar();
-        tabla.add(barra);
+        lista = new JComboBox(modelo);
+        tabla = new JTable(modeloTabla);
+//        DefaultListSelectionModel listSelectionModel = new DefaultListSelectionModel();
+//        listSelectionModel.addListSelectionListener(new ListSelectionListener() {
+//            @Override
+//            public void valueChanged(ListSelectionEvent e) {
+//                System.out.println("ACTION!!!");
+//            }
+//        });
+        tabla.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (e.getValueIsAdjusting()) {
+                    int selectedRow = tabla.getSelectedRow();
+                    txtNombre.setText((String) modeloTabla.getValueAt(selectedRow, 0));
+                    txtApellidos.setText((String) modeloTabla.getValueAt(selectedRow, 1));
+                    txtEmail.setText((String) modeloTabla.getValueAt(selectedRow, 2));
+                    txtCelular.setText((String) modeloTabla.getValueAt(selectedRow, 3));
+                    txtDireccion.setText((String) modeloTabla.getValueAt(selectedRow, 4));
+
+                }
+            }
+        });
 
     }
 }
