@@ -1,10 +1,10 @@
 package model;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.JOptionPane;
 
 public class ConsultasPersona extends Conexion {
 
@@ -41,6 +41,36 @@ public class ConsultasPersona extends Conexion {
             }
         }
         return false;
+    }
+    
+    public void buscar(Persona persona) {
+        Connection conexion = getConnection();
+
+        try {
+            ps = conexion.prepareStatement("SELECT * FROM personas WHERE clave = ?");
+            ps.setString(1, persona.getClave());
+
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                persona.setClave(rs.getString("clave"));
+                persona.setNombre(rs.getString("nombre"));
+                persona.setDomicilio(rs.getString("domicilio"));
+                persona.setCelular(rs.getString("celular"));
+                persona.setCorreo(rs.getString("correo"));
+                persona.setFechaNacimiento(Date.valueOf(rs.getString("fecha_nacimiento")));
+                persona.setGenero(rs.getString("genero"));
+                
+            } 
+        } catch (SQLException ex) {
+            System.out.println("Error en query, " + ex);
+        } finally {
+            try {
+                conexion.close();
+            } catch (Exception e) {
+                System.out.println("Error cerrando conexión, " + e);
+            }
+        }
     }
 
 }

@@ -1,4 +1,3 @@
-
 package controller;
 
 import java.awt.event.ActionEvent;
@@ -9,8 +8,8 @@ import model.ConsultasPersona;
 import model.Persona;
 import view.Formato;
 
-public class ControladorPersona implements ActionListener{
-    
+public class ControladorPersona implements ActionListener {
+
     private Formato vista;
     private Persona persona;
     private ConsultasPersona modelo;
@@ -21,25 +20,16 @@ public class ControladorPersona implements ActionListener{
         this.modelo = modelo;
         vista.btnInsertar.addActionListener(this);
         vista.btnLimpiar.addActionListener(this);
+        vista.btnBuscarId.addActionListener(this);
     }
-    
-    public void llenarPersona(){
-        this.persona.setClave(vista.txtId.getText());
-        this.persona.setNombre(vista.txtNombre.getText());
-        this.persona.setDomicilio(vista.txtDomicilio.getText());
-        this.persona.setCelular(vista.txtCelular.getText());
-        this.persona.setCorreo(vista.txtCorreo.getText());
-        this.persona.setFechaNacimiento(Date.valueOf(vista.txtFechaNacimiento.getText()));
-        this.persona.setGenero((String)vista.comboGenero.getSelectedItem());
-    }
-    
-    public void iniciarControlador(){
+
+    public void iniciarControlador() {
         vista.setVisible(true);
         vista.setLocationRelativeTo(null);
         vista.setTitle("CRUD MVC");
     }
 
-    public void limpiarFormato(){
+    public void limpiarFormato() {
         vista.txtHiddenId.setText(null);
         vista.txtBuscar.setText(null);
         vista.txtId.setText(null);
@@ -50,23 +40,45 @@ public class ControladorPersona implements ActionListener{
         vista.txtFechaNacimiento.setText(null);
         vista.comboGenero.setSelectedIndex(0);
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getActionCommand().equals("Insertar")){
-            llenarPersona();
-            if(modelo.insertar(persona)){
+        if (e.getActionCommand().equals("Insertar")) {
+
+            this.persona.setClave(vista.txtId.getText());
+            this.persona.setNombre(vista.txtNombre.getText());
+            this.persona.setDomicilio(vista.txtDomicilio.getText());
+            this.persona.setCelular(vista.txtCelular.getText());
+            this.persona.setCorreo(vista.txtCorreo.getText());
+            this.persona.setFechaNacimiento(Date.valueOf(vista.txtFechaNacimiento.getText()));
+            this.persona.setGenero((String) vista.comboGenero.getSelectedItem());
+
+            if (modelo.insertar(persona)) {
                 JOptionPane.showInternalMessageDialog(null, "Registro insertado con exito");
-            }else {
+            } else {
                 JOptionPane.showInternalMessageDialog(null, "Error al insertar registro");
             }
-        }
-        if(e.getActionCommand().equals("Limpiar")){
             limpiarFormato();
         }
+
+        if (e.getActionCommand().equals("Limpiar")) {
+            limpiarFormato();
+            System.out.println(e);
+        }
+
+        if (e.getActionCommand().equals("Buscar ID")) {
+            this.persona.setClave(vista.txtBuscar.getText());
+            modelo.buscar(persona);
+
+            vista.txtId.setText(this.persona.getClave());
+            vista.txtNombre.setText(this.persona.getNombre());
+            vista.txtDomicilio.setText(this.persona.getDomicilio());
+            vista.txtCelular.setText(this.persona.getCelular());
+            vista.txtCorreo.setText(this.persona.getCorreo());
+            vista.txtFechaNacimiento.setText(String.valueOf(this.persona.getFechaNacimiento()));
+            vista.comboGenero.setSelectedItem(this.persona.getGenero());
+            
+        }
     }
-    
-    
-    
-    
+
 }
