@@ -3,7 +3,6 @@
 
 
 import controller.ControladorPersona;
-import java.sql.Date;
 import model.ConsultasPersona;
 import model.Persona;
 import view.Formato;

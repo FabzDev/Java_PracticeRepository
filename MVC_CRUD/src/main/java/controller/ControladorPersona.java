@@ -4,7 +4,6 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
-import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import model.ConsultasPersona;
 import model.Persona;
@@ -21,7 +20,7 @@ public class ControladorPersona implements ActionListener{
         this.persona = persona;
         this.modelo = modelo;
         vista.btnInsertar.addActionListener(this);
-        vista.btnModificar.addActionListener(this);
+        vista.btnLimpiar.addActionListener(this);
     }
     
     public void llenarPersona(){
@@ -40,6 +39,18 @@ public class ControladorPersona implements ActionListener{
         vista.setTitle("CRUD MVC");
     }
 
+    public void limpiarFormato(){
+        vista.txtHiddenId.setText(null);
+        vista.txtBuscar.setText(null);
+        vista.txtId.setText(null);
+        vista.txtNombre.setText(null);
+        vista.txtDomicilio.setText(null);
+        vista.txtCelular.setText(null);
+        vista.txtCorreo.setText(null);
+        vista.txtFechaNacimiento.setText(null);
+        vista.comboGenero.setSelectedIndex(0);
+    }
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("Insertar")){
@@ -49,6 +60,9 @@ public class ControladorPersona implements ActionListener{
             }else {
                 JOptionPane.showInternalMessageDialog(null, "Error al insertar registro");
             }
+        }
+        if(e.getActionCommand().equals("Limpiar")){
+            limpiarFormato();
         }
     }
     
