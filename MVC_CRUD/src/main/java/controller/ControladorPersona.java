@@ -21,6 +21,8 @@ public class ControladorPersona implements ActionListener {
         vista.btnInsertar.addActionListener(this);
         vista.btnLimpiar.addActionListener(this);
         vista.btnBuscarId.addActionListener(this);
+        vista.btnModificar.addActionListener(this);
+        vista.btnEliminar.addActionListener(this);
     }
 
     public void iniciarControlador() {
@@ -43,6 +45,7 @@ public class ControladorPersona implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
         if (e.getActionCommand().equals("Insertar")) {
 
             this.persona.setClave(vista.txtId.getText());
@@ -68,17 +71,53 @@ public class ControladorPersona implements ActionListener {
 
         if (e.getActionCommand().equals("Buscar ID")) {
             this.persona.setClave(vista.txtBuscar.getText());
-            modelo.buscar(persona);
 
-            vista.txtId.setText(this.persona.getClave());
-            vista.txtNombre.setText(this.persona.getNombre());
-            vista.txtDomicilio.setText(this.persona.getDomicilio());
-            vista.txtCelular.setText(this.persona.getCelular());
-            vista.txtCorreo.setText(this.persona.getCorreo());
-            vista.txtFechaNacimiento.setText(String.valueOf(this.persona.getFechaNacimiento()));
-            vista.comboGenero.setSelectedItem(this.persona.getGenero());
+            if (modelo.buscar(persona)) {
+                vista.txtHiddenId.setText(String.valueOf(this.persona.getIdPersona()));
+                vista.txtId.setText(this.persona.getClave());
+                vista.txtNombre.setText(this.persona.getNombre());
+                vista.txtDomicilio.setText(this.persona.getDomicilio());
+                vista.txtCelular.setText(this.persona.getCelular());
+                vista.txtCorreo.setText(this.persona.getCorreo());
+                vista.txtFechaNacimiento.setText(String.valueOf(this.persona.getFechaNacimiento()));
+                vista.comboGenero.setSelectedItem(this.persona.getGenero());
+
+            } else {
+                JOptionPane.showInternalMessageDialog(null, "Registro no encontrado");
+                limpiarFormato();
+            }
+        }
+
+        if (e.getSource().equals(vista.btnModificar)) {
+            
+            this.persona.setIdPersona(Integer.parseInt(vista.txtHiddenId.getText()));
+            this.persona.setClave(vista.txtId.getText());
+            this.persona.setNombre(vista.txtNombre.getText());
+            this.persona.setDomicilio(vista.txtDomicilio.getText());
+            this.persona.setCelular(vista.txtCelular.getText());
+            this.persona.setCorreo(vista.txtCorreo.getText());
+            this.persona.setFechaNacimiento(Date.valueOf(vista.txtFechaNacimiento.getText()));
+            this.persona.setGenero((String) vista.comboGenero.getSelectedItem());
+            
+            if (modelo.modificar(persona)) {
+                
+                JOptionPane.showInternalMessageDialog(null, "Registro modificado con exito");
+                limpiarFormato();
+            } else {
+                JOptionPane.showInternalMessageDialog(null, "Error al modificar registro");
+            }
+        }
+        
+        if (e.getSource().equals(vista.btnEliminar)) {
+            
+            if (modelo.eliminar(persona)) {
+                
+                JOptionPane.showInternalMessageDialog(null, "Registro eliminado con exito");
+                limpiarFormato();
+            } else {
+                JOptionPane.showInternalMessageDialog(null, "Error al modificar registro");
+            }
             
         }
     }
-
 }

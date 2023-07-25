@@ -1,10 +1,9 @@
-
 package model;
 
 import java.sql.Date;
 
-
 public class Persona {
+
     private int idPersona;
     private String clave;
     private String nombre;
@@ -12,10 +11,14 @@ public class Persona {
     private String celular;
     private String correo;
     private Date fechaNacimiento;
-    private String genero;   
-    
+    private String genero;
+
     public int getIdPersona() {
         return idPersona;
+    }
+
+    public void setIdPersona(int idPersona) {
+        this.idPersona = idPersona;
     }
 
     public String getClave() {
@@ -73,7 +76,5 @@ public class Persona {
     public void setGenero(String genero) {
         this.genero = genero;
     }
-    
-    
-    
+
 }
