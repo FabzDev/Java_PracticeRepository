@@ -1,5 +1,4 @@
 
-import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,12 +6,6 @@ import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
 
 public class Table extends javax.swing.JFrame {
-
-    Conexion con = new Conexion();
-    PreparedStatement ps;
-    ResultSet rs;
-    DefaultTableModel modeloTabla = new DefaultTableModel();
-    ActionListener al;
 
     public Table() {
         initComponents();
@@ -31,6 +24,8 @@ public class Table extends javax.swing.JFrame {
         btnCargar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        txtCodigo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,23 +57,33 @@ public class Table extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabla);
 
+        jLabel1.setText("Código:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 707, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(286, 286, 286)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
                 .addComponent(btnCargar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(21, 21, 21))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
-                .addComponent(btnCargar)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(43, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCargar)
+                    .addComponent(jLabel1)
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(282, 282, 282))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -96,41 +101,81 @@ public class Table extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
-        System.out.println("Corriendo maestro");
-
+        Conexion con = new Conexion();
         Connection connection = con.getConnection();
+        PreparedStatement ps;
+        ResultSet rs;
+        DefaultTableModel modeloTabla = new DefaultTableModel();
+        
+        if (txtCodigo.getText().equals("")) {
+            try {
+                ps = connection.prepareStatement("SELECT codigo, nombre, precio, cantidad FROM productos;");
 
-        modeloTabla.addColumn("Código");
-        modeloTabla.addColumn("Nombre");
-        modeloTabla.addColumn("Precio");
-        modeloTabla.addColumn("Cantidad");
+                rs = ps.executeQuery();
 
-        try {
-            ps = connection.prepareStatement("SELECT * FROM productos;");
+                modeloTabla.addColumn("Código");
+                modeloTabla.addColumn("Nombre");
+                modeloTabla.addColumn("Precio");
+                modeloTabla.addColumn("Cantidad");
 
-            rs = ps.executeQuery();
+                while (rs.next()) {
+                    Object fila[] = new Object[4];
 
-            while (rs.next()) {
-                Object fila[] = new Object[4];
+                    for (int i = 0; i < 4; i++) {
+                        fila[i] = rs.getObject(i + 1);
+                    }
 
-                for (int i = 0; i < 4; i++) {
-                    fila[i] = rs.getObject(i + 1);
+                    modeloTabla.addRow(fila);
                 }
 
-                modeloTabla.addRow(fila);
+            } catch (SQLException ex) {
+                System.out.println("Error, " + ex);
+            } finally {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    System.out.println("Error closeConexion, " + ex);
+                }
             }
 
-        } catch (SQLException ex) {
-            System.out.println("Error, " + ex);
-        } finally {
+            tabla.setModel(modeloTabla);
+        }
+        
+        if (!txtCodigo.getText().equals("")) {
             try {
-                connection.close();
+                ps = connection.prepareStatement("SELECT codigo, nombre, precio, cantidad FROM productos WHERE codigo = ?;");
+                ps.setInt(1, Integer.parseInt(txtCodigo.getText()));
+
+                rs = ps.executeQuery();
+
+                modeloTabla.addColumn("Código");
+                modeloTabla.addColumn("Nombre");
+                modeloTabla.addColumn("Precio");
+                modeloTabla.addColumn("Cantidad");
+
+                while (rs.next()) {
+                    Object fila[] = new Object[4];
+
+                    for (int i = 0; i < 4; i++) {
+                        fila[i] = rs.getObject(i + 1);
+                    }
+
+                    modeloTabla.addRow(fila);
+                }
+
             } catch (SQLException ex) {
-                System.out.println("Error closeConexion, " + ex);
+                System.out.println("Error, " + ex);
+            } finally {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    System.out.println("Error closeConexion, " + ex);
+                }
             }
+
+            tabla.setModel(modeloTabla);
         }
 
-        tabla.setModel(modeloTabla);
     }//GEN-LAST:event_btnCargarActionPerformed
 
     /**
@@ -179,8 +224,10 @@ public class Table extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCargar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabla;
+    private javax.swing.JTextField txtCodigo;
     // End of variables declaration//GEN-END:variables
 }
