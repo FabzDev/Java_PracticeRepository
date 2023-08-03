@@ -40,6 +40,7 @@ public class Table extends javax.swing.JFrame {
         btnInsertar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
+        txtId = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,8 +95,18 @@ public class Table extends javax.swing.JFrame {
         });
 
         btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -133,13 +144,18 @@ public class Table extends javax.swing.JFrame {
                                         .addComponent(btnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(btnInsertar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(txtCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE))))))
+                                    .addComponent(txtCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(76, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(85, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
+                .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCargar)
                     .addComponent(jLabel1)
@@ -258,6 +274,7 @@ public class Table extends javax.swing.JFrame {
                 txtNombre.setText(rs.getString("nombre"));
                 txtPrecio.setText(rs.getString("precio"));
                 txtCantidad.setText(rs.getString("cantidad"));
+                txtId.setText(rs.getString("id"));
             }
 
         } catch (SQLException ex) {
@@ -298,12 +315,74 @@ public class Table extends javax.swing.JFrame {
             System.out.println("Error, " + ex);
         } finally {
             try {
+                limpiarCampos();
                 connection.close();
             } catch (SQLException ex) {
                 System.out.println("Error closeConexion, " + ex);
             }
         }
     }//GEN-LAST:event_btnInsertarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        Conexion con = new Conexion();
+        Connection connection = con.getConnection();
+        try {
+            PreparedStatement ps = connection.prepareStatement("DELETE FROM productos WHERE id = ?");
+            ps.setString(1, txtId.getText());
+            int result = ps.executeUpdate();
+
+            if (result > 0) {
+                JOptionPane.showMessageDialog(null, "Registro Eliminado");
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al eliminar producto");
+
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error " + ex);
+        } finally {
+            try {
+                limpiarCampos();
+                connection.close();
+            } catch (SQLException ex) {
+                System.out.println("Error closeConexion, " + ex);
+            }
+        }
+
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        Conexion con = new Conexion();
+        Connection connection = con.getConnection();
+        try {
+            PreparedStatement ps = connection.prepareStatement("UPDATE productos SET codigo=?, nombre=?, precio=?, cantidad=? WHERE id=?");
+            ps.setString(1, txtCod.getText());
+            ps.setString(2, txtNombre.getText());
+            ps.setString(3, txtPrecio.getText());
+            ps.setString(4, txtCantidad.getText());
+            ps.setString(5, txtId.getText());
+
+            int result = ps.executeUpdate();
+
+            if (result > 0) {
+                JOptionPane.showMessageDialog(null, "Registro Modificado");
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al modificar producto");
+
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error " + e);
+        } finally {
+            try {
+                limpiarCampos();
+                connection.close();
+            } catch (SQLException ex) {
+                System.out.println("Error closeConexion, " + ex);
+            }
+        }
+    }//GEN-LAST:event_btnModificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -365,7 +444,17 @@ public class Table extends javax.swing.JFrame {
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtCod;
     private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPrecio;
     // End of variables declaration//GEN-END:variables
+
+    public void limpiarCampos() {
+        txtCod.setText(null);
+        txtNombre.setText(null);
+        txtPrecio.setText(null);
+        txtCantidad.setText(null);
+        txtId.setText(null);
+    }
+
 }
