@@ -24,7 +24,7 @@ public class programaCombo extends javax.swing.JFrame {
      */
     public programaCombo() {
         initComponents();
-        setModeloCombo();
+        setModelos();
     }
 
     public Vector<Pais> mostrarPaises() {
@@ -57,9 +57,10 @@ public class programaCombo extends javax.swing.JFrame {
         return vectorPaises;
     }
 
-    public void setModeloCombo() {
+    public void setModelos() {
         DefaultComboBoxModel model = new DefaultComboBoxModel(mostrarPaises());
         jComboBox1.setModel(model);
+        
     }
 
     /**
@@ -133,8 +134,31 @@ public class programaCombo extends javax.swing.JFrame {
         DefaultTableModel tableModel = new DefaultTableModel();
         tableModel.addColumn("idEstado");
         tableModel.addColumn("nombreEstado");
-
-    
+        Pais paisTemp = (Pais) jComboBox1.getSelectedItem();
+        
+        Conexion con = new Conexion();
+        Connection conection = con.getConnection();
+        try {
+        PreparedStatement ps = conection.prepareStatement("SELECT * FROM estados WHERE idPais=?");
+        ps.setInt(1, paisTemp.getId());
+        ResultSet rs = ps.executeQuery();
+        
+        while(rs.next()){
+            Object[] fila = new Object[2];
+            for (int i = 0; i < 2; i++) {
+                fila[i] = rs.getObject(i+1);
+            }
+            
+            tableModel.addRow(fila);
+            
+        }
+        
+        jTable1.setModel(tableModel);
+                    
+        } catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
+ 
     }//GEN-LAST:event_jComboBox1ItemStateChanged
 
 /**
