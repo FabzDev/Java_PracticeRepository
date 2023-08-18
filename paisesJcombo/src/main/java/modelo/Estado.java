@@ -9,5 +9,7 @@ package modelo;
  * @author fabio
  */
 public class Estado {
-    
+    int idEstado;
+    String nombreEstado;
+    Pais pais;
 }

@@ -8,8 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Vector;
-import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.table.DefaultTableModel;
 import modelo.Conexion;
 import modelo.Pais;
 
@@ -25,12 +25,9 @@ public class programaCombo extends javax.swing.JFrame {
     public programaCombo() {
         initComponents();
         setModeloCombo();
-        
-        
-        
     }
-    
-    public Vector<Pais> mostrarPaises(){
+
+    public Vector<Pais> mostrarPaises() {
         // Creando el valor por defecto del JComboBox (hardcode)
         Pais paisPorDefecto = new Pais();
         paisPorDefecto.setId(0);
@@ -38,7 +35,6 @@ public class programaCombo extends javax.swing.JFrame {
         // Creando el vector que usaremos para el JComboBox y agregando el valod por defecto en la posición 0 del vector;
         Vector vectorPaises = new Vector();
         vectorPaises.add(paisPorDefecto);
-        
         // Creando conexion con la base de datos
         Conexion con = new Conexion();
         Connection connection = con.getConnection();
@@ -46,26 +42,26 @@ public class programaCombo extends javax.swing.JFrame {
         try {
             PreparedStatement ps = connection.prepareStatement("select * from paises;");
             ResultSet rs = ps.executeQuery();
-            
-            while(rs.next()){
+
+            while (rs.next()) {
                 Pais pais = new Pais();
                 pais.setId(rs.getInt("id"));
                 pais.setNombre(rs.getString("nombre"));
-                
+
                 vectorPaises.add(pais);
             }
-            
+
         } catch (Exception e) {
             System.out.println("Error " + e);
         }
         return vectorPaises;
-    };
-    
-    public void setModeloCombo(){
+    }
+
+    public void setModeloCombo() {
         DefaultComboBoxModel model = new DefaultComboBoxModel(mostrarPaises());
         jComboBox1.setModel(model);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -85,21 +81,21 @@ public class programaCombo extends javax.swing.JFrame {
         lblPaises.setText("Paises:");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
             }
         });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "idEstado", "nombreEstado"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -133,14 +129,18 @@ public class programaCombo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+        DefaultTableModel tableModel = new DefaultTableModel();
+        tableModel.addColumn("idEstado");
+        tableModel.addColumn("nombreEstado");
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
+    
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
+
+/**
+ * @param args the command line arguments
+ */
+public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -151,16 +151,28 @@ public class programaCombo extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                }
+
+}
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(programaCombo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(programaCombo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(programaCombo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(programaCombo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(programaCombo.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+} catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(programaCombo.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+} catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(programaCombo.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(programaCombo.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
