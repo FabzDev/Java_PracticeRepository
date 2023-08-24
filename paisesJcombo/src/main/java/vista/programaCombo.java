@@ -30,8 +30,8 @@ public class programaCombo extends javax.swing.JFrame {
     public Vector<Pais> mostrarPaises() {
         // Creando el valor por defecto del JComboBox (hardcode)
         Pais paisPorDefecto = new Pais();
-        paisPorDefecto.setId(0);
-        paisPorDefecto.setNombre("Selecciona un país");
+        paisPorDefecto.setIdPais(0);
+        paisPorDefecto.setNombrePais("Selecciona un país");
         // Creando el vector que usaremos para el JComboBox y agregando el valod por defecto en la posición 0 del vector;
         Vector vectorPaises = new Vector();
         vectorPaises.add(paisPorDefecto);
@@ -45,8 +45,8 @@ public class programaCombo extends javax.swing.JFrame {
 
             while (rs.next()) {
                 Pais pais = new Pais();
-                pais.setId(rs.getInt("id"));
-                pais.setNombre(rs.getString("nombre"));
+                pais.setIdPais(rs.getInt("id"));
+                pais.setNombrePais(rs.getString("nombre"));
 
                 vectorPaises.add(pais);
             }
@@ -140,7 +140,7 @@ public class programaCombo extends javax.swing.JFrame {
         Connection conection = con.getConnection();
         try {
         PreparedStatement ps = conection.prepareStatement("SELECT * FROM estados WHERE idPais=?");
-        ps.setInt(1, paisTemp.getId());
+        ps.setInt(1, paisTemp.getIdPais());
         ResultSet rs = ps.executeQuery();
         
         while(rs.next()){
