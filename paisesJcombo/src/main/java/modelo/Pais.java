@@ -30,7 +30,7 @@ public class Pais {
         // Creando el valor por defecto del JComboBox (hardcode)
         Pais paisPorDefecto = new Pais();
         paisPorDefecto.setIdPais(0);
-        paisPorDefecto.setNombrePais("Selecciona un país");
+        paisPorDefecto.setNombrePais("Selecciona un País");
 
         // Creando el vector que usaremos para el JComboBox y agregando el valod por defecto en la posición 0 del vector;
         Vector vectorPaises = new Vector();

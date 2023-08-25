@@ -39,6 +39,12 @@ public class Ciudad {
         // Creando el vector que usaremos para el JComboBox
         Vector vectorCiudades = new Vector();
 
+        // Creando el vector que usaremos para el JComboBox y agregando el valod por defecto en la posición 0 del vector;
+        Ciudad ciudadPorDefecto = new Ciudad();
+        ciudadPorDefecto.setIdCiudad(0);
+        ciudadPorDefecto.setNombreCiudad("Selecciona una Ciudad");
+        vectorCiudades.add(ciudadPorDefecto);
+        
         // Creando conexion con la base de datos
         ConexionFactory con = new ConexionFactory();
         Connection connection = con.getConnection();

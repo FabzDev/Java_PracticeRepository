@@ -20,12 +20,18 @@ public class programaComboAnidado extends javax.swing.JFrame {
      */
     public programaComboAnidado() {
         initComponents();
-        String[] defaultEstados = {"Selecciona un País"};
-        String[] defaultCiudades = {"Selecciona un Estado"};
+        
+        // Estableciendo modelo para combobox paises
         Pais pais = new Pais();
         DefaultComboBoxModel modeloPaises = new DefaultComboBoxModel(pais.mostrarPaises());
         jComboBox1.setModel(modeloPaises);
+        
+        // Estableciendo modelo default para combobox estados
+        String[] defaultEstados = {"Selecciona un Estado"};
         jComboBox2.setModel(new DefaultComboBoxModel(defaultEstados));
+        
+        // Estableciendo modelo para combobox ciudades
+        String[] defaultCiudades = {"Selecciona una Ciudad"};
         jComboBox3.setModel(new DefaultComboBoxModel(defaultCiudades));
     }
 
@@ -113,11 +119,12 @@ public class programaComboAnidado extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
-        String[] defaultCiudades = {"Selecciona un Estado"};
         Pais paisTemp = (Pais) jComboBox1.getSelectedItem();
         Estado estadoTemp = new Estado();
         DefaultComboBoxModel modeloEstados = new DefaultComboBoxModel(estadoTemp.mostrarEstados(paisTemp.getIdPais()));
         jComboBox2.setModel(modeloEstados);
+        
+        String[] defaultCiudades = {"Selecciona una Ciudad"};
         jComboBox3.setModel(new DefaultComboBoxModel(defaultCiudades));
 
     }//GEN-LAST:event_jComboBox1ItemStateChanged

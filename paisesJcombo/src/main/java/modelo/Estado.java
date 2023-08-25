@@ -39,6 +39,12 @@ public class Estado {
         // Creando el vector que usaremos para el JComboBox
         Vector vectorEstados = new Vector();
 
+        // Creando el vector que usaremos para el JComboBox y agregando el valod por defecto en la posición 0 del vector;
+        Estado estadoPorDefecto = new Estado();
+        estadoPorDefecto.setIdEstado(0);
+        estadoPorDefecto.setNombreEstado("Selecciona un Estado");
+        vectorEstados.add(estadoPorDefecto);
+
         // Creando conexion con la base de datos
         ConexionFactory con = new ConexionFactory();
         Connection connection = con.getConnection();
