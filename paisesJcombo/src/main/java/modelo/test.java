@@ -28,20 +28,16 @@ public class test {
         }
 
         // Dibujando el tallo
-        for (int i = 1; i <= n + 2; i++) {
-            if (i > n) {
-                for (int j = 1; j <= n*2; j++){
-                    if (j==(n-1) || j==(n+1)){
-                        System.out.print("|");
-                    } else {
-                        System.out.print(" ");
-                    }
+        for (int i = 0; i < 2; i++) {
+            for (int j = 1; j <= n * 2; j++) {
+                if (j == (n - 1) || j == (n + 1)) {
+                    System.out.print("|");
+                } else {
+                    System.out.print(" ");
                 }
-            } else {
-                System.out.print(" ");
             }
             System.out.println();
         }
-
     }
+
 }
