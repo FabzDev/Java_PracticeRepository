@@ -50,33 +50,45 @@ public class TextGraph1 {
 		if ((rowN < 0) || (rowN > canvas.length) || (colN < 0) || (colN > canvas[rowN].length)) {
 			return;
 		}
-		canvas[rowN - 1][colN - 1] = value;
+		canvas[rowN][colN] = value;
 	}
 
 	// Dibujar rectangulo
 	public void drawSquare(int xi, int yi, int ancho, int alto) {
-		for (int row = yi; row <= yi + alto; row++) {
-			if (row == yi || row == yi + alto) {
-				setChar(row, xi, '+');
-				for (int col = xi + 1; col <= xi + ancho - 1; col++) {
-					setChar(row, col, '-');
-				}
-				setChar(row, xi + ancho, '+');
-			} else {
-				for (int col = xi; col <= xi + ancho; col++) {
-					if (col == xi || col == xi + ancho) 
-						setChar(row, col, '|');
-				}
-			}
+		for (int row = yi; row < yi + alto -2; row++) {
+			setChar(row, xi-1, '|');
+			setChar(row, xi-2 + ancho, '|');
 		}
+		for (int col = xi; col < (xi + ancho -2); col++) {
+			setChar(yi-1, col, '-');
+			setChar(yi+alto-2, col, '-');
+		}
+		setChar(yi-1, xi-1, '+');
+		setChar(yi-1, xi+ancho-2, '+');
+		setChar(yi+alto-2, xi-1, '+');
+		setChar(yi+alto-2, xi+ancho-2, '+');
+
+		// for (int row = yi; row <= yi + alto; row++) {
+		// if (row == yi || row == yi + alto) {
+		// setChar(row, xi, '+');
+		// for (int col = xi + 1; col <= xi + ancho - 1; col++) {
+		// setChar(row, col, '-');
+		// }
+		// setChar(row, xi + ancho, '+');
+		// } else {
+		// for (int col = xi; col <= xi + ancho; col++) {
+		// if (col == xi || col == xi + ancho)
+		// setChar(row, col, '|');
+		// }
+		// }
+		// }
 	}
 
 	// main method (dentro de la clase)
 	public static void main(String[] args) {
 		TextGraph1 tg1 = new TextGraph1(20, 20);
 
-		tg1.drawSquare(10, 10, 8, 4);
+		tg1.drawSquare(5, 5, 5, 5);
 		tg1.printCanvas();
 	}
-
 }
